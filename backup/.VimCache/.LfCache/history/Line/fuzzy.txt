@@ -1,0 +1,19 @@
+lua
+wildfire
+leader
+lualine
+pre
+Ne
+server
+nvim snip
+pair
+auto
+format
+for
+rainbow
+tree
+hop
+go
+tele
+lspsaga
+update
