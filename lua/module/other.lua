@@ -42,6 +42,7 @@ require'toggleterm'.setup {
   persist_size = true,
   persist_mode = true,
   shell = vim.o.shell,
+  direction = 'float',
 }
 -- TODO: colorizer
 require 'colorizer'.setup {

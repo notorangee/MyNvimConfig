@@ -38,7 +38,7 @@ keymap('n', 'gs', ':Format<CR>', opts)
 keymap('n', '<F5>', ':TagbarToggle<CR>', opts)
 
 --TODO: toggleterm
-keymap('n', 'TT', ':ToggleTerm size=10 dir=%:p:h direction=horizontal<CR>', opts)
+keymap('n', 'TT', ':ToggleTerm size=10 dir=%:p:h <CR>', opts)
 
 --TODO: spectre
 vim.keymap.set('n', '<leader>ss', function()
@@ -95,11 +95,11 @@ keymap('v', 'tt', '<Plug>TranslateV', opts)
 keymap('n', 'tw', '<Plug>TranslateW', opts)
 keymap('v', 'tw', '<Plug>TranslateWV', opts)
 keymap('n', 'tr', '<Plug>TranslateR', opts)
-keymap('v', 'tr', '<Plug>TranslateRV', opts)
+
 keymap('n', 'tx', '<Plug>TranslateX', opts)
 -- 自定义
 keymap('n', 'te', '<Plug>Translate :call TranslatorSpeak(v:false)<CR>', opts)
-keymap('v', 'te', '<Plug>Translate :call TranslatorSpeak(v:true)<CR>', opts)
+keymap('v', 'te', '<Plug>TranslateV :call TranslatorSpeak(v:true)<CR>', opts)
 keymap('n', 'ts', ':call TranslatorSpeak(v:false)<CR>', opts)
 keymap('v', 'ts', ':call TranslatorSpeak(v:true)<CR>', opts)
 

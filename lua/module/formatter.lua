@@ -1,6 +1,5 @@
 -- Utilities for creating configurations
 local util = require "formatter.util"
-local file = vim.fn.fnameescape(vim.api.nvim_buf_get_name(0))
 -- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
 require("formatter").setup {
   -- Enable or disable logging
@@ -13,7 +12,7 @@ require("formatter").setup {
         function()
             return {
                 exe = 'java',
-                args = { '-jar ~/Soft/Java_format/google-java-format.jar', file },
+                args = { '-jar ~/Soft/Java_format/google-java-format.jar', vim.fn.fnameescape(vim.api.nvim_buf_get_name(0))},
                 stdin = true
             }
         end
@@ -31,7 +30,7 @@ require("formatter").setup {
         function()
             return {
                 exe = 'prettier',
-                args = { '--stdin-filepath', file, '--single-quote' },
+                args = { '--stdin-filepath', vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)), '--single-quote' },
                 stdin = true
             }
         end

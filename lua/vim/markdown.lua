@@ -42,36 +42,37 @@ nnoremap <silent> ,4 :call ReviseMarkdown(7, v:false, 4)<CR>
 vnoremap <silent> ,4 :call ReviseMarkdown(7, v:true, 4)<CR>
 nnoremap <silent> ,5 :call ReviseMarkdown(7, v:false, 5)<CR>
 vnoremap <silent> ,5 :call ReviseMarkdown(7, v:true, 5)<CR>
+
 function ReviseMarkdown( selectModeType, selectVisualMode, selectTitle )
   if &filetype == 'markdown'
-    let s:currentLine = getline(".") 
-    let s:markdownContent = a:selectVisualMode ?  SelectContent() : expand("<cword>")
-    let s:insertType = ""
+    let g:currentLine = getline(".") 
+    let g:markdownContent = a:selectVisualMode ?  SelectContent() : expand("<cword>")
+    let g:insertType = ""
     if a:selectModeType == 0
-      let s:failed = append(".", "---")
+      let g:failed = append(".", "---")
     elseif a:selectModeType == 1
-      let s:failed = append(line("."), "--------")
+      let g:failed = append(line("."), "--------")
     elseif a:selectModeType == 2
-      let s:insertType = "*"
+      let g:insertType = "*"
     elseif a:selectModeType == 3
-      let s:insertType = "**"
+      let g:insertType = "**"
     elseif a:selectModeType == 4
-      let s:insertType = "~~"
+      let g:insertType = "~~"
     elseif a:selectModeType == 5
-      let s:insertType = "`"
+      let g:insertType = "`"
     elseif a:selectModeType == 6
-      let s:insertType = "~~~"
+      let g:insertType = "~~~"
     elseif a:selectModeType == 7
 	if a:selectTitle == 1
-	  let s:insertType = "#"
+	  let g:insertType = "#"
     	elseif a:selectTitle == 2
-	  let s:insertType = "##"
+	  let g:insertType = "##"
     	elseif a:selectTitle == 3
-	  let s:insertType = "###"
+	  let g:insertType = "###"
     	elseif a:selectTitle == 4
-	  let s:insertType = "####"
+	  let g:insertType = "####"
     	elseif a:selectTitle == 5
-	  let s:insertType = "#####"
+	  let g:insertType = "#####"
     	endif
     endif
     if !( a:selectModeType == 0 || a:selectModeType == 1 )
@@ -79,26 +80,26 @@ function ReviseMarkdown( selectModeType, selectVisualMode, selectTitle )
 	call SetMarkdownContent(v:true)
 	return
       endif
-      let s:execStatus = a:selectModeType != 6 ? SetMarkdownContent(v:false) : CodeBlockType(a:selectVisualMode)
+      let g:execStatus = a:selectModeType != 6 ? SetMarkdownContent(v:false) : CodeBlockType(a:selectVisualMode)
       return
     endif
 endif
 endfunction
 
 function SetMarkdownContent(isInsertTitle)
-  let s:markdownContent = a:isInsertTitle ? s:currentLine : s:markdownContent
-  let s:replaceContent = a:isInsertTitle ? s:insertType." ".s:currentLine : s:insertType.s:markdownContent.s:insertType
-  call setline(".", substitute(s:currentLine, s:markdownContent, s:replaceContent, ""))
+  let g:markdownContent = a:isInsertTitle ? g:currentLine : g:markdownContent
+  let g:replaceContent = a:isInsertTitle ? g:insertType." ".g:currentLine : g:insertType.g:markdownContent.g:insertType
+  call setline(".", substitute(g:currentLine, g:markdownContent, g:replaceContent, ""))
   return 0
 endfunction
 
 function CodeBlockType(selectVisualMode)
-  let s:langType = input("输入语言类型(默认java):\n", "")
-  let s:langType = s:langType == "" ? "java" : s:langType
-  let s:markdownContent = a:selectVisualMode ? s:markdownContent : s:currentLine
-  let s:replaceContent = "\t".s:markdownContent
-  call append(line(".") - 1, "~~~".s:langType)
-  call setline(".", substitute(s:currentLine, s:markdownContent, s:replaceContent, ""))
+  let g:langType = input("输入语言类型(默认java):\n", "")
+  let g:langType = g:langType == "" ? "java" : g:langType
+  let g:markdownContent = a:selectVisualMode ? g:markdownContent : g:currentLine
+  let g:replaceContent = "\t".g:markdownContent
+  call append(line(".") - 1, "~~~".g:langType)
+  call setline(".", substitute(g:currentLine, g:markdownContent, g:replaceContent, ""))
   call append(line("."), "~~~")
   "let reverse = (line('.') > line('v')) ? 0 : ( line('.') < line('v') ) ? 1 : ( col('.') < col('v') ) ? 1 : 0
   return 1
