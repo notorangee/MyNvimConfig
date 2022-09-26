@@ -56,7 +56,8 @@ keymap('n', '<leader>q', 'q', opts)
 keymap('n', '<Esc>', '<Esc>:nohlsearch<CR>:echo<CR>:NvimTreeCollapse<CR>', opts)
 keymap('n', '=', 'nzz', opts)
 keymap('n', '-', 'nzz', opts)
+keymap('n', 'rr', ':w<CR>', opts)
 
 keymap('n', '<F3>', ':call Run()<CR>', opts)
-keymap('n', '<F4>', ':call RmRunCodeFile()<CR>:nohlsearch<CR>', opts)
+keymap('n', '<F4>', ':call RunStop()<CR>:nohlsearch<CR>', opts)
 

@@ -23,9 +23,9 @@ vim.o.wildmenu = true
 -- 保存撤销历史
 vim.o.undofile = true
 -- 设置备份文件、交换文件、操作历史文件的保存位置
-vim.o.backupdir = '~/.config/nvim/backup/.backup//'
--- im.o.directory = '~/.config/nvim/backup/.swap//'
-vim.o.undodir = '~/.config/nvim/backup/.undo//'
+--vim.o.backupdir = '~/.config/nvim/backup/.backup//'
+--vim.o.directory = '~/.config/nvim/backup/.swap//'
+--vim.o.undodir = '~/.config/nvim/backup/.undo//'
 -- 自动切换工作目录
 vim.o.autochdir = true
 -- 出错时，不要发出响声
@@ -49,7 +49,7 @@ vim.o.termguicolors = true
 vim.diagnostic.config({
   virtual_text = true,
   signs = true,
-  update_in_insert = true
+  update_in_insert = false
 })
 
 -- vimscript配置
@@ -64,7 +64,7 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 let g:execResult = v:false
 func! Run()
   if &filetype == 'java' || &filetype == 'c' || &filetype == 'cpp'
-    call RmRunCodeFile()
+    call RunStop()
   else
     exec 'w %'
   endif
@@ -90,7 +90,7 @@ func! Run()
 endfunc
 
 "删除编译产生的二进制文件或其它操作
-func! RmRunCodeFile()
+func! RunStop()
   exec 'w %'
   if &filetype == 'java'
     silent exec '!rm *.class'
@@ -101,7 +101,7 @@ func! RmRunCodeFile()
     silent exec '!rm *.out'
   elseif &filetype == 'markdown'
     silent exec 'MarkdownPreviewStop'
-  elseif &filetype == 'html' || &filetype == 'xml'
+  elseif &filetype == 'hrml' || &filetype == 'xml'
     let g:execResult = v:false
     silent exec '!killall chromium'
   endif

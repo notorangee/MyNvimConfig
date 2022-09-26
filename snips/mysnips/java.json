@@ -1,0 +1,16 @@
+{
+  "function": {
+    "prefix": "fu",
+    "body": ["public ${1:static} ${2:void} ${3:name}(${4:args}) {", "\t$0", "}"],
+    "description": "my method"
+  },
+  "forj": {
+    "prefix": "forj",
+    "body": [
+      "for (${1:int} ${2:j} = ${3:0}; $2 < ${4:max}; $2++) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Indexed for loop"
+  }
+}

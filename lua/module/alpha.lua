@@ -24,9 +24,9 @@ dashboard.section.header.val = {
 -- Set menu
 dashboard.section.buttons.val = {
     dashboard.button( "e", "  > New file" , ":ene <BAR> startinsert <CR>"),
-    dashboard.button( "f", "  > Find file", ":cd $HOME | :Leaderf file<CR>"),
-    dashboard.button( "r", "  > Recent"   , ":Leaderf mru<CR>"),
-    dashboard.button( "s", "  > Settings" , ":e $MYVIMRC | :cd %:p:h<CR>"),
+    dashboard.button( "f", "  > Find file", ":silent cd $HOME | :Telescope find_files<CR>"),
+    dashboard.button( "r", "  > Recent"   , ":Telescope oldfiles<CR>"),
+    dashboard.button( "s", "  > Settings" , ":e $MYVIMRC | :cd %:p:h<CR><ESC>"),
     dashboard.button( "q", "  > Quit NVIM", ":qa<CR>"),
 }
 

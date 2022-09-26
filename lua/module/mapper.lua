@@ -23,12 +23,19 @@ keymap('n', '<leader>cA', '<plug>NERDCommenterAppend', opts)
 keymap('v', '<leader>cA', '<plug>NERDCommenterAppend', opts)
 
 --TODO: leaderF
-keymap('n', 'ff', ':Leaderf file<CR>', opts)
-keymap('n', 'fo', ':Leaderf mru<CR>', opts)
-keymap('n', 'fb', ':Leaderf buffer<CR>', opts)
-keymap('n', 'fc', ':Leaderf function<CR>', opts)
-keymap('n', 'fg', ':Leaderf rg<CR>', opts)
-keymap('n', 'fl', ':Leaderf line<CR>', opts)
+--keymap('n', 'ff', ':Leaderf file<CR>', opts)
+--keymap('n', 'fo', ':Leaderf mru<CR>', opts)
+--keymap('n', 'fb', ':Leaderf buffer<CR>', opts)
+--keymap('n', 'fc', ':Leaderf function<CR>', opts)
+--keymap('n', 'fg', ':Leaderf rg<CR>', opts)
+--keymap('n', 'fl', ':Leaderf line<CR>', opts)
+-- TODO: Telescope
+keymap('n', 'ff', "<cmd>Telescope find_files<cr>", opts)
+keymap('n', 'fg', "<cmd>Telescope live_grep<cr>", opts)
+keymap('n', 'fb', "<cmd>Telescope buffers<cr>", opts)
+keymap('n', 'fh', "<cmd>Telescope help_tags<cr>", opts)
+keymap('n', 'fk', "<cmd>Telescope keymaps<cr>", opts)
+keymap('n', 'fc', "<cmd>Telescope git_commits<cr>", opts)
 
 --TODO: formatCode
 --keymap('n', 'gl', ':Format<CR>', opts)

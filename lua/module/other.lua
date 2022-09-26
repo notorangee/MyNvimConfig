@@ -8,11 +8,6 @@ vim.g.JavaComplete_ImportOrder = { 'com.','Java.','Javax.' }
 vim.g.rooter_change_directory_for_non_project_files = 'current'
 
 -- TODO: nerd-commenter
--- \cc ：注释当前行和选中行
--- \cu ：取消选中区域的注释
--- \cs ：没注释加注释，有注释就取消注释
--- \ca : 转换注释样式
--- \cA ：跳转行尾再进行注释
 vim.g.NERDCreateDefaultMappings = 0
 vim.g.NERDSpaceDelims = 0
 vim.g.NERDCompactSexyComs = 1
@@ -45,13 +40,17 @@ require'toggleterm'.setup {
   direction = 'float',
 }
 -- TODO: colorizer
-require 'colorizer'.setup {
+require 'colorizer'.setup ({
   'css';
   'javascript';
   html = {
-    mode = 'foreground';
+    mode = 'background';
+  }},
+  {
+    --mode = 'foreground'
+    mode = 'background'
   }
-}
+)
 
 -- TODO: nvim-gps
 require("nvim-gps").setup()

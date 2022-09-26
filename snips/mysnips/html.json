@@ -1,0 +1,8 @@
+{
+  "stylecss": {
+    "prefix": "stylecss",
+    "body": ["<style type=${1:name}>", "$0", "</style>"],
+    "description": "HTML - Defines a style definition",
+    "scope": "text.html"
+  }
+}

@@ -73,7 +73,7 @@ return require('packer').startup(function(use)
 
   -- Snippets
   use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
-  use 'L3MON4D3/LuaSnip' -- Snippets plugin
+  use({"L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*"})
   --use 'SirVer/ultisnips'
   --use 'quangnguyen30192/cmp-nvim-ultisnips'
   --use 'hrsh7th/cmp-vsnip'
