@@ -36,7 +36,7 @@ lspsaga.setup { -- defaults ...
     exec = "<CR>",
   },
   definition_preview_icon = "  ",
-  border_style = "rounded",
+  border_style = "single",
   rename_prompt_prefix = "➤",
   rename_output_qflist = {
     enable = true,

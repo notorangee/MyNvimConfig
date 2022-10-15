@@ -6,25 +6,35 @@ end
 
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
 local formatting = null_ls.builtins.formatting
--- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
-local diagnostics = null_ls.builtins.diagnostics
 
 null_ls.setup({
 	debug = false,
 	sources = {
-		formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } }),
+    -- javascript / css / json / yaml /markdown
+		formatting.prettier.with({
+      filetypes = { "html", "css", "json", "yaml", "markdown" },
+      extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } 
+    }),
+    -- python
 		formatting.black.with({ extra_args = { "--fast" } }),
+    -- lua
 		formatting.stylua,
+    -- java
 		formatting.google_java_format,
-		formatting.markdownlint,
+    -- packer
 		formatting.packer,
+    -- sql
 		formatting.sql_formatter,
+    -- asm
 		formatting.asmfmt,
+    -- c / cpp
 		formatting.clang_format,
+    -- cmake
 		formatting.cmake_format,
+    -- golang
 		formatting.gofmt,
-		formatting.json_tool,
+    formatting.goimports,
+    -- xml
 		formatting.xmllint,
-    -- diagnostics.flake8
 	},
 })

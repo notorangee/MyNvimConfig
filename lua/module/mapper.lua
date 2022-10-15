@@ -76,17 +76,18 @@ keymap({ "n", "v" }, "gl", "<cmd>lua vim.lsp.buf.range_formatting()<cr>1<cr><ESC
 
 --TODO: lspsaga
 --- In lsp attach function
-keymap({ "n", "v" }, "rn", "<cmd>Lspsaga rename<cr>", opts)
-keymap({ "n", "v" }, "gr", "<cmd>lua require'lspsaga.provider'.lsp_finder()<CR>", opts)
 keymap("n", "ga", "<cmd>Lspsaga code_action<cr>", opts)
 keymap("v", "ga", ":<c-u>Lspsaga range_code_action<CR>", opts)
-keymap({ "n", "i" }, "<C-s>", "<cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>", opts)
+keymap({ "n", "v" }, "rn", "<cmd>Lspsaga rename<cr>", opts)
+keymap({ "n", "v" }, "gr", "<cmd>lua require'lspsaga.provider'.lsp_finder()<CR>", opts)
+keymap({ "n", "i" }, "<C-h>", "<cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>", opts)
 keymap({ "n", "v" }, "gk", "<cmd>Lspsaga hover_doc<CR>", opts)
 keymap({ "n", "v" }, "gd", "<cmd>lua require'lspsaga.provider'.preview_definition()<CR>", opts)
+keymap({ "n", "v" }, 'gt', vim.lsp.buf.type_definition, opts)
 keymap({ "n", "v" }, "gi", "<cmd>Lspsaga implement<CR>", opts)
 keymap({ "n", "v" }, "ge", "<cmd>Lspsaga show_line_diagnostics<CR>", opts)
-keymap("n", "g]", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts)
-keymap("n", "g[", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts)
+keymap({ "n", "v" }, "g]", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts)
+keymap({ "n", "v" }, "g[", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts)
 keymap({ "n", "i" }, "<C-k>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1, '<c-u>')<CR>", {})
 keymap({ "n", "i" }, "<C-j>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1, '<c-d>')<CR>", {})
 

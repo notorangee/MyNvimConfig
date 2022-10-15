@@ -1,5 +1,5 @@
 vim.g.mapleader = ' '
-local keymap = vim.api.nvim_set_keymap
+local keymap = vim.keymap.set
 local opts = {noremap = true, silent = true}
 -- 更新vimrc配置
 keymap('n', 'rv', ':w<CR>:source %<CR>', opts)
@@ -31,13 +31,13 @@ keymap('n', '<leader>l', '<C-w>l', opts)
 -- 修改内置终端按键映射
 vim.cmd([[
   tnoremap <esc> <C-\><C-N>
-  tnoremap <leader>h <C-\><C-N><C-W>h
-  tnoremap <leader>j <C-\><C-N><C-W>j
-  tnoremap <leader>k <C-\><C-N><C-W>k
-  tnoremap <leader>l <C-\><C-N><C-W>l
+  "tnoremap <leader>h <C-\><C-N><C-W>h
+  "tnoremap <leader>j <C-\><C-N><C-W>j
+  "tnoremap <leader>k <C-\><C-N><C-W>k
+  "tnoremap <leader>l <C-\><C-N><C-W>l
 ]])
 -- 跳转到弹出的窗口
-keymap('n', 'gw', '<c-w><c-w><CR>', opts)
+keymap({ 'n', 'v' },'gw', '<c-w><c-w>', opts)
 -- 其它操作映射
 keymap('n', 'yi', 'y0', opts)
 keymap('n', 'ya', 'y$', opts)
