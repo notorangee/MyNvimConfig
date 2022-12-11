@@ -4,7 +4,7 @@ vim.o.number = true
 vim.o.relativenumber = true
 -- 光标所在的行高亮
 vim.o.cursorline = true
--- 自折行
+-- 自动折行
 vim.o.wrap = false
 -- 设置不在单词处折行
 vim.o.linebreak = true
@@ -45,6 +45,8 @@ vim.o.expandtab = true
 vim.o.smartindent = true
 -- 开启主题颜色
 vim.o.termguicolors = true
+-- 禁用鼠标
+vim.o.mouse = 
 
 vim.diagnostic.config({
   virtual_text = true,
@@ -63,7 +65,7 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 "编译运行代码文件
 let g:execResult = v:false
 func! Run()
-  if &filetype == 'java' || &filetype == 'c' || &filetype == 'cpp'
+  if &filetype == 'java'
     call RunStop()
   else
     exec 'w %'
@@ -71,9 +73,11 @@ func! Run()
   if &filetype == 'java'
     silent exec '!javac %'
     :term java %<
-  elseif &filetype == 'c' || &filetype == 'cpp'
-    silent exec "!g++ % -o %<\.out"
-    :term ./%<\.out
+  elseif &filetype == 'c'
+    "let s:getDevice = system('echo ${$(ls /dev/ | grep "ttyUSB")%0*}')
+      :term make && sudo stcflash -r 89 ./Temp/%<\.ihx
+      "silent exec "!g++ % -o %<\.out"
+      ":term ./%<\.out
   elseif &filetype == 'sh'
     silent exec '!chmod +x %'
     :term ./%
@@ -96,7 +100,8 @@ func! RunStop()
     silent exec '!rm *.class'
     silent exec '!rm $(find com -name "*.class")'
   elseif &filetype == 'c'
-    silent exec '!rm *.out'
+    "silent exec '!rm *.out'
+    silent exec '!make clean'
   elseif &filetype == 'cpp'
     silent exec '!rm *.out'
   elseif &filetype == 'markdown'
@@ -106,6 +111,14 @@ func! RunStop()
     silent exec '!killall chromium'
   endif
 endfunc
+
+function OpenMinicom()
+  :term sudo minicom
+endfunction
+
+function OpenCutecom()
+  :term sudo cutecom
+endfunction
 
 "输入法配置
 "let g:input_toggle = 0

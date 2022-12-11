@@ -61,8 +61,11 @@ return require("packer").startup(function(use)
 	use("mfussenegger/nvim-jdtls")
 
 	-- lspsaga
-	use("kkharji/lspsaga.nvim")
-
+  use("kkharji/lspsaga.nvim")
+  --use({
+  --  "glepnir/lspsaga.nvim",
+  --  branch = "main",
+  --})
 	-- symbols-outline
 	use("simrat39/symbols-outline.nvim")
 

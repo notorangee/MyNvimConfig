@@ -72,44 +72,43 @@ keymap("n", "wm", "<Cmd>WinShift<CR>", opts)
 --TODO: format
 --keymap('n', 'fm', ':Format<CR>', opts)
 keymap("n", "gs", "<cmd>lua vim.lsp.buf.formatting()<cr>1<cr><cr>", opts)
-keymap({ "n", "v" }, "gl", "<cmd>lua vim.lsp.buf.range_formatting()<cr>1<cr><ESC>", opts)
+keymap("n", "gl", "<cmd>lua vim.lsp.buf.range_formatting()<cr>1<cr><ESC>", opts)
 
 --TODO: lspsaga
 --- In lsp attach function
 keymap("n", "ga", "<cmd>Lspsaga code_action<cr>", opts)
-keymap("v", "ga", ":<c-u>Lspsaga range_code_action<CR>", opts)
-keymap({ "n", "v" }, "rn", "<cmd>Lspsaga rename<cr>", opts)
-keymap({ "n", "v" }, "gr", "<cmd>lua require'lspsaga.provider'.lsp_finder()<CR>", opts)
+keymap("v", "<leader>ga", ":<c-u>Lspsaga range_code_action<CR>", opts)
+keymap("n", "rn", "<cmd>Lspsaga rename<cr>", opts)
+keymap("n", "gr", "<cmd>lua require'lspsaga.provider'.lsp_finder()<CR>", opts)
 keymap({ "n", "i" }, "<C-h>", "<cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>", opts)
-keymap({ "n", "v" }, "gk", "<cmd>Lspsaga hover_doc<CR>", opts)
-keymap({ "n", "v" }, "gd", "<cmd>lua require'lspsaga.provider'.preview_definition()<CR>", opts)
-keymap({ "n", "v" }, 'gt', vim.lsp.buf.type_definition, opts)
-keymap({ "n", "v" }, "gi", "<cmd>Lspsaga implement<CR>", opts)
-keymap({ "n", "v" }, "ge", "<cmd>Lspsaga show_line_diagnostics<CR>", opts)
-keymap({ "n", "v" }, "g]", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts)
-keymap({ "n", "v" }, "g[", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts)
-keymap({ "n", "i" }, "<C-k>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1, '<c-u>')<CR>", {})
-keymap({ "n", "i" }, "<C-j>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1, '<c-d>')<CR>", {})
+keymap("n", "gk", "<cmd>Lspsaga hover_doc<CR>", opts)
+keymap("n", "gd", vim.lsp.buf.definition, opts)
+keymap("n", 'gt', vim.lsp.buf.type_definition, opts)
+keymap("n", "gi", vim.lsp.buf.implementation, opts)
+keymap("n", "ge", "<cmd>Lspsaga show_line_diagnostics<CR>", opts)
+keymap("n", "g]", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts)
+keymap("n", "g[", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts)
+keymap({ "n", "i" }, "<C-j>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>", opts)
+keymap({ "n", "i" }, "<C-k>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>", opts)
 
 -- TODO: translator
 keymap("n", "tt", "<Plug>Translate", opts)
-keymap("v", "tt", "<Plug>TranslateV", opts)
+keymap("v", "<leader>tv", "<Plug>TranslateV", opts)
 keymap("n", "tw", "<Plug>TranslateW", opts)
-keymap("v", "tw", "<Plug>TranslateWV", opts)
+keymap("v", "<leader>tw", "<Plug>TranslateWV", opts)
 keymap("n", "tr", "<Plug>TranslateR", opts)
 
 keymap("n", "tx", "<Plug>TranslateX", opts)
 -- 自定义
 keymap("n", "te", "<Plug>Translate :call TranslatorSpeak(v:false)<CR>", opts)
-keymap("v", "te", "<Plug>TranslateV :call TranslatorSpeak(v:true)<CR>", opts)
+keymap("v", "<leader>te", "<Plug>TranslateV :call TranslatorSpeak(v:true)<CR>", opts)
 keymap("n", "ts", ":call TranslatorSpeak(v:false)<CR>", opts)
-keymap("v", "ts", ":call TranslatorSpeak(v:true)<CR>", opts)
+keymap("v", "<leader>ts", ":call TranslatorSpeak(v:true)<CR>", opts)
 
 -- TODO: wildfire
 keymap({ "n", "v" }, "<leader><leader>", "<Plug>(wildfire-fuel)", opts)
 
 -- TODO: hop
--- place this in one of your configuration file(s)
 keymap(
 	"",
 	"fs",

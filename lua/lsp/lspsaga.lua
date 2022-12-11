@@ -1,5 +1,5 @@
 local lspsaga = require 'lspsaga'
-lspsaga.setup { -- defaults ...
+lspsaga.setup {
   debug = false,
   use_saga_diagnostic_sign = true,
   -- diagnostic sign
@@ -12,7 +12,7 @@ lspsaga.setup { -- defaults ...
   code_action_icon = " ",
   code_action_prompt = {
     enable = true,
-    sign = true,
+    sign = false,
     sign_priority = 40,
     virtual_text = true,
   },
@@ -24,8 +24,8 @@ lspsaga.setup { -- defaults ...
     vsplit = "s",
     split = "i",
     quit = "q",
-    scroll_down = "<C-f>",
-    scroll_up = "<C-b>",
+    scroll_down = "<C-j>",
+    scroll_up = "<C-k>",
   },
   code_action_keys = {
     quit = "q",

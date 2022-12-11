@@ -28,7 +28,7 @@ null_ls.setup({
     -- asm
 		formatting.asmfmt,
     -- c / cpp
-		formatting.clang_format,
+		--formatting.clang_format,
     -- cmake
 		formatting.cmake_format,
     -- golang

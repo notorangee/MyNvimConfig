@@ -30,22 +30,24 @@ keymap('n', '<leader>k', '<C-w>k', opts)
 keymap('n', '<leader>l', '<C-w>l', opts)
 -- 修改内置终端按键映射
 vim.cmd([[
-  tnoremap <esc> <C-\><C-N>
+  tnoremap <S-q> <C-\><C-N>
   "tnoremap <leader>h <C-\><C-N><C-W>h
   "tnoremap <leader>j <C-\><C-N><C-W>j
   "tnoremap <leader>k <C-\><C-N><C-W>k
   "tnoremap <leader>l <C-\><C-N><C-W>l
 ]])
 -- 跳转到弹出的窗口
-keymap({ 'n', 'v' },'gw', '<c-w><c-w>', opts)
+keymap('n','gw', '<c-w><c-w>', opts)
+keymap('v','<leader>gw', '<c-w><c-w>', opts)
 -- 其它操作映射
 keymap('n', 'yi', 'y0', opts)
-keymap('n', 'ya', 'y$', opts)
-keymap('v', 'A', '$', opts)
-keymap('v', 'I', '0', opts)
-keymap('v', 'a', 'A', opts)
-keymap('v', 'i', 'I', opts)
-keymap('v', 'Y', '"+yy<Esc>', opts)
+keymap("n", "ya", "y$", opts)
+keymap('v', '<leader>A', '$', opts)
+keymap("v", "<leader>I", "0", opts)
+keymap("v", "<leader>i", "I", opts)
+keymap("v", "<leader>a", "A", opts)
+keymap("v", "<leader>w", "wh", opts)
+keymap('v', '<leader>y', '"+yy<Esc>', opts)
 keymap('n', 'H', '5h', opts)
 keymap('n', 'J', '5j', opts)
 keymap('n', 'K', '5k', opts)
@@ -57,7 +59,8 @@ keymap('n', '<Esc>', '<Esc>:nohlsearch<CR>:echo<CR>:NvimTreeCollapse<CR>', opts)
 keymap('n', '=', 'nzz', opts)
 keymap('n', '-', 'nzz', opts)
 keymap('n', 'rr', ':w<CR>', opts)
-
+-- 自定义函数映射
 keymap('n', '<F3>', ':call Run()<CR>', opts)
 keymap('n', '<F4>', ':call RunStop()<CR>:nohlsearch<CR>', opts)
-
+keymap('n', 'mc', ':call OpenMinicom()<CR>', opts)
+keymap('n', 'cu', ':call OpenCutecom()<CR>', opts)

@@ -15,7 +15,6 @@ end
 
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
 local servers = {
-	"clangd",
 	"rust_analyzer",
 	"cmake",
 	"dockerls",
@@ -37,6 +36,33 @@ for _, server in ipairs(servers) do
 		capabilities = capabilities,
 	})
 end
+
+-- clangd
+lsp.clangd.setup({
+	capabilities = capabilities,
+  cmd = {
+    "clangd",
+  };
+  filetypes = {"c", "cpp", "objc", "objcpp", "cuda", "proto"};
+  single_file_support = true;
+  args = {
+    "-ferror-limit=0"
+  }
+})
+
+-- ccls
+lsp.ccls.setup({
+	capabilities = capabilities,
+  init_options = {
+    compilationDatabaseDirectory = "build";
+    index = {
+      threads = 0;
+    };
+    clang = {
+      excludeArgs = { "-frounding-math" } ;
+    };
+  }
+})
 
 -- html
 lsp.html.setup({
@@ -180,6 +206,9 @@ lsp.vimls.setup({
 
 -- nvim-cmp setup
 cmp.setup({
+  completion = {
+    autocomplete = false,
+  },
 	snippet = {
 		expand = function(args)
 			luasnip.lsp_expand(args.body)
