@@ -42,25 +42,14 @@ lsp.clangd.setup({
 	capabilities = capabilities,
   cmd = {
     "clangd",
+    "--enable-config",
+    "--pch-storage=memory",
+    "--background-index",
   };
   filetypes = {"c", "cpp", "objc", "objcpp", "cuda", "proto"};
   single_file_support = true;
   args = {
     "-ferror-limit=0"
-  }
-})
-
--- ccls
-lsp.ccls.setup({
-	capabilities = capabilities,
-  init_options = {
-    compilationDatabaseDirectory = "build";
-    index = {
-      threads = 0;
-    };
-    clang = {
-      excludeArgs = { "-frounding-math" } ;
-    };
   }
 })
 

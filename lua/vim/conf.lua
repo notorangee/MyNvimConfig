@@ -1,7 +1,11 @@
 -- 显示行号
 vim.o.number = true
+-- 关闭虚拟文字提示
+vim.diagnostic.config({
+  virtual_text = false,
+})
 -- 显示当前行，以及其他相对行
-vim.o.relativenumber = true
+vim.o.relativenumber = true;
 -- 光标所在的行高亮
 vim.o.cursorline = true
 -- 自动折行
@@ -46,10 +50,10 @@ vim.o.smartindent = true
 -- 开启主题颜色
 vim.o.termguicolors = true
 -- 禁用鼠标
-vim.o.mouse = 
+vim.o.mouse =  
 
 vim.diagnostic.config({
-  virtual_text = true,
+  virtual_text = false,
   signs = true,
   update_in_insert = false
 })
@@ -75,7 +79,7 @@ func! Run()
     :term java %<
   elseif &filetype == 'c'
     "let s:getDevice = system('echo ${$(ls /dev/ | grep "ttyUSB")%0*}')
-      :term make && sudo stcflash -r 89 ./Temp/%<\.ihx
+      :term make && make install
       "silent exec "!g++ % -o %<\.out"
       ":term ./%<\.out
   elseif &filetype == 'sh'
@@ -102,8 +106,6 @@ func! RunStop()
   elseif &filetype == 'c'
     "silent exec '!rm *.out'
     silent exec '!make clean'
-  elseif &filetype == 'cpp'
-    silent exec '!rm *.out'
   elseif &filetype == 'markdown'
     silent exec 'MarkdownPreviewStop'
   elseif &filetype == 'hrml' || &filetype == 'xml'
@@ -123,10 +125,10 @@ endfunction
 "输入法配置
 "let g:input_toggle = 0
 function! Fcitx2en()
-  let s:input_status = system("fcitx-remote")
+  let s:input_status = system("fcitx5-remote")
   if s:input_status == 2
     "let g:input_toggle = 1
-    let l:a = system("fcitx-remote -c")
+    let l:a = system("fcitx5-remote -c")
   endif
 endfunction
 

@@ -1,7 +1,6 @@
-vim.g.mapleader = ' '
 local keymap = vim.keymap.set
 local opts = {noremap = true, silent = true}
--- 更新vimrc配置
+-- 更新单前文件配置
 keymap('n', 'rv', ':w<CR>:source %<CR>', opts)
 -- 新建当前标签
 keymap('n', 'tn', ':tabnew%<CR>', opts)
@@ -28,6 +27,10 @@ keymap('n', '<leader>h', '<C-w>h', opts)
 keymap('n', '<leader>j', '<C-w>j', opts)
 keymap('n', '<leader>k', '<C-w>k', opts)
 keymap('n', '<leader>l', '<C-w>l', opts)
+keymap( 'n', "<C-Right>", ':vertical resize -2<CR>', opts)
+keymap( 'n', "<C-Left>", ':vertical resize +2<CR>', opts)
+keymap( 'n', "<C-Up>", ':resize +2<CR>', opts)
+keymap( 'n', "<C-Down>", ':resize -2<CR>', opts)
 -- 修改内置终端按键映射
 vim.cmd([[
   tnoremap <S-q> <C-\><C-N>
@@ -55,8 +58,8 @@ keymap('n', 'L', '5l', opts)
 keymap('n', 'q', ':q<CR><Esc>', opts)
 keymap('n', 'wq', ':wq<CR><Esc>', opts)
 keymap('n', '<leader>q', 'q', opts)
-keymap('n', '<Esc>', '<Esc>:nohlsearch<CR>:echo<CR>:NvimTreeCollapse<CR>', opts)
-keymap('n', '=', 'nzz', opts)
+keymap('n', '<Esc>', '<Esc>:nohlsearch<CR>:echo<CR>', opts)
+keymap('n', '=', 'Nzz', opts)
 keymap('n', '-', 'nzz', opts)
 keymap('n', 'rr', ':w<CR>', opts)
 -- 自定义函数映射
