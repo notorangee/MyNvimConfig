@@ -187,8 +187,8 @@ require("lazy").setup({
       require("lsp.lspsaga")
     end,
     keys = {
-      {"ga", "<cmd>Lspsaga code_action<cr>", silent = true},
-      {"<leader>ga", ":<c-u>Lspsaga range_code_action<CR>", silent = true},
+      { "ga", "<cmd>Lspsaga code_action<cr>", silent = true },
+      { "<leader>ga", ":<c-u>Lspsaga range_code_action<CR>", silent = true },
       {"rn", "<cmd>Lspsaga rename<cr>", silent = true},
       {"gr", "<cmd>lua require'lspsaga.provider'.lsp_finder()<CR>", silent = true},
       {"<C-h>", "<cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>", mode = {"n", "i"}, silent = true},
@@ -307,6 +307,7 @@ require("lazy").setup({
     config = function()
       require("module.markdown")
     end,
+    event = "BufRead",
     keys = {{"<F3>"}},
 	},
 
@@ -330,7 +331,8 @@ require("lazy").setup({
       {"<leader>cc", "<plug>NERDCommenterComment", mode = {"n", "v"}, silent = true},
       {"<leader>cs", "<plug>NERDCommenterToggle", mode = {"n", "v"}, silent = true},
       {"<leader>cA", "<plug>NERDCommenterAppend", mode = {"n", "v"}, silent = true},
-    }
+    },
+    event = "BufRead",
   },
 
 	-- vim-cursorword
@@ -348,7 +350,7 @@ require("lazy").setup({
     end,
     keys = {
       {"gs", "<cmd>lua vim.lsp.buf.formatting()<cr>1<cr><cr>", silent = true},
-      {"gl", "<cmd>lua vim.lsp.buf.range_formatting()<cr>1<cr><ESC>", silent = true},
+      {"gl", "<cmd>lua vim.lsp.buf.range_formatting()<cr>1<cr><ESC>", mode = {"n", "v"}, silent = true},
     }
   },
 
@@ -362,6 +364,7 @@ require("lazy").setup({
 	{
     "AndrewRadev/switch.vim",
     config = other_config.booleanswitch,
+    keys = {{"sw", silent = true}},
     event = "BufRead",
   },
 
