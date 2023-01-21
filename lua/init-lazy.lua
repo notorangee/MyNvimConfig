@@ -188,19 +188,19 @@ require("lazy").setup({
     end,
     keys = {
       { "ga", "<cmd>Lspsaga code_action<cr>", silent = true },
-      { "<leader>ga", ":<c-u>Lspsaga range_code_action<CR>", silent = true },
+      { "<leader>ga", ":<c-u>Lspsaga range_code_action<cr>", silent = true },
       {"rn", "<cmd>Lspsaga rename<cr>", silent = true},
-      {"gr", "<cmd>lua require'lspsaga.provider'.lsp_finder()<CR>", silent = true},
-      {"<C-h>", "<cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>", mode = {"n", "i"}, silent = true},
-      {"gk", "<cmd>Lspsaga hover_doc<CR>", silent = true},
+      {"gr", "<cmd>lua require'lspsaga.provider'.lsp_finder()<cr>", silent = true},
+      {"<C-h>", "<cmd>lua require('lspsaga.signaturehelp').signature_help()<cr>", mode = {"n", "i"}, silent = true},
+      {"gk", "<cmd>Lspsaga hover_doc<cr>", silent = true},
       {"gd", vim.lsp.buf.definition, silent = true},
       {'gt', vim.lsp.buf.type_definition, silent = true},
       {"gi", vim.lsp.buf.implementation, silent = true},
-      {"ge", "<cmd>Lspsaga show_line_diagnostics<CR>", mode = {"n", "v"}, silent = true},
-      {"g]", "<cmd>Lspsaga diagnostic_jump_next<CR>", silent = true},
-      {"g[", "<cmd>Lspsaga diagnostic_jump_prev<CR>", silent = true},
-      {"<C-j>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>", mode = {"n", "i"}, silent = true},
-      {"<C-k>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>", mode = {"n", "i"}, silent = true},
+      {"ge", "<cmd>Lspsaga show_line_diagnostics<cr>", mode = {"n", "v"}, silent = true},
+      {"g]", "<cmd>Lspsaga diagnostic_jump_next<cr>", silent = true},
+      {"g[", "<cmd>Lspsaga diagnostic_jump_prev<cr>", silent = true},
+      {"<C-j>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<cr>", mode = {"n", "i"}, silent = true},
+      {"<C-k>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<cr>", mode = {"n", "i"}, silent = true},
     },
     event = "BufRead",
   },
@@ -210,7 +210,7 @@ require("lazy").setup({
     config = function()
       require("module.outline")
     end,
-    keys = {{"go", "<cmd>SymbolsOutline<CR>", mode = {"n", "v"}, silent = true}},
+    keys = {{"go", "<cmd>SymbolsOutline<cr>", mode = {"n", "v"}, silent = true}},
   },
 
 	-- Snippets
@@ -260,7 +260,7 @@ require("lazy").setup({
     config = function()
       require("module.nvimtree")
     end,
-    keys = {{"<F1>", ":NvimTreeToggle<cr>", silent = true}},
+    keys = {{"<F1>", "<cmd>NvimTreeToggle<cr>", silent = true}},
 	},
 
 	-- undotree
@@ -269,7 +269,7 @@ require("lazy").setup({
     config = function()
       require("module.undotree")
     end,
-    keys = {{"<F2>", ":UndotreeToggle<CR>", silent = true}},
+    keys = {{"<F2>", "<cmd>UndotreeToggle<cr>", silent = true}},
   },
 
 	-- surround
@@ -308,13 +308,12 @@ require("lazy").setup({
       require("module.markdown")
     end,
     event = "BufRead",
-    keys = {{"<F3>"}},
 	},
 
 	-- vim-table-mode
   {
     "dhruvasagar/vim-table-mode",
-    keys = {{"tm", ":TableModeToggle<CR>", silent = true}},
+    keys = {{"tm", "<cmd>TableModeToggle<cr>", silent = true}},
   },
 
 	-- vim-visual-multi
@@ -323,15 +322,10 @@ require("lazy").setup({
     event = "BufRead",
   },
 
-	-- nerd commenter
+	-- comment
   {
-    "preservim/nerdcommenter",
-    config = other_config.nerdcommenter,
-    keys = {
-      {"<leader>cc", "<plug>NERDCommenterComment", mode = {"n", "v"}, silent = true},
-      {"<leader>cs", "<plug>NERDCommenterToggle", mode = {"n", "v"}, silent = true},
-      {"<leader>cA", "<plug>NERDCommenterAppend", mode = {"n", "v"}, silent = true},
-    },
+    'numToStr/Comment.nvim',
+    config = other_config.comment,
     event = "BufRead",
   },
 
@@ -357,22 +351,21 @@ require("lazy").setup({
 	-- tagbar
 	{
     "preservim/tagbar",
-    keys = {{"<F5>", ":TagbarToggle<CR>", silent = true}},
+    keys = {{"<F5>", "<cmd>TagbarToggle<cr>", silent = true}},
   },
 
 	-- boolean switch
 	{
     "AndrewRadev/switch.vim",
     config = other_config.booleanswitch,
-    keys = {{"sw", silent = true}},
-    event = "BufRead",
+    keys = {{"sw", "<cmd>Switch<cr>", mode = {"n", "v"}, silent = true}},
   },
 
 	-- toggleterm
   {
     "akinsho/toggleterm.nvim",
     config = other_config.toggleterm,
-    keys = {{"TT", ":ToggleTerm size=10 dir=%:p:h <CR>", silent = true}},
+    keys = {{"TT", "<cmd>ToggleTerm size=10 dir=%:p:h <cr>", silent = true}},
   },
 
 	-- spectre
@@ -427,7 +420,7 @@ require("lazy").setup({
 	-- winshift
   {
     "sindrets/winshift.nvim",
-    keys = {{"wm", "<Cmd>WinShift<CR>", silent = true}},
+    keys = {{"wm", "<cmd>WinShift<cr>", silent = true}},
   },
 
 	-- tanslator
@@ -443,10 +436,10 @@ require("lazy").setup({
       {"<leader>tw", "<Plug>TranslateWV", mode = "v", silent = true},
       {"tr", "<Plug>TranslateR", silent = true},
       {"tx", "<Plug>TranslateX", silent = true},
-      {"te", "<Plug>Translate :call TranslatorSpeak(v:false)<CR>", silent = true},
-      {"<leader>te", "<Plug>TranslateV :call TranslatorSpeak(v:true)<CR>", mode = "v", silent = true},
-      {"ts", ":call TranslatorSpeak(v:false)<CR>", silent = true},
-      {"<leader>ts", ":call TranslatorSpeak(v:true)<CR>", mode = "v", silent = true},
+      {"te", "<Plug>Translate <cmd>call TranslatorSpeak(v:false)<cr>", silent = true},
+      {"<leader>te", "<Plug>TranslateV <cmd>call TranslatorSpeak(v:true)<cr>", mode = "v", silent = true},
+      {"ts", "<cmd>call TranslatorSpeak(v:false)<cr>", silent = true},
+      {"<leader>ts", "<cmd>call TranslatorSpeak(v:true)<cr>", mode = "v", silent = true},
     },
   },
 

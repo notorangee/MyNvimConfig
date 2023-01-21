@@ -13,19 +13,51 @@ function other.rooter()
   vim.g.rooter_change_directory_for_non_project_files = 'current'
 end
 
--- TODO: nerd-commenter
-function other.nerdcommenter()
-  vim.g.NERDCreateDefaultMappings = 0
-  vim.g.NERDSpaceDelims = 0
-  vim.g.NERDCompactSexyComs = 1
-  vim.g.NERDDefaultAlign = 'left'
-  vim.g.NERDAltDelims_java = 1
-  vim.cmd([[
-    let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
-  ]])
-  vim.g.NERDCommentEmptyLines = 1
-  vim.g.NERDTrimTrailingWhitespace = 1
-  vim.g.NERDToggleCheckAllLines = 1
+-- TODO: comment
+function other.comment()
+  require('Comment').setup{
+    ---Add a space b/w comment and the line
+    padding = true,
+    ---Whether the cursor should stay at its position
+    sticky = true,
+    ---Lines to be ignored while (un)comment
+    ignore = nil,
+    ---LHS of toggle mappings in NORMAL mode
+    toggler = {
+        ---Line-comment toggle keymap
+        line = '<leader>cc',
+        ---Block-comment toggle keymap
+        block = '<leader>cs',
+    },
+    ---LHS of operator-pending mappings in NORMAL and VISUAL mode
+    opleader = {
+        ---Line-comment keymap
+        line = '<leader>cc',
+        ---Block-comment keymap
+        block = '<leader>cs',
+    },
+    ---LHS of extra mappings
+    extra = {
+        ---Add comment on the line above
+        above = '<leader>cO',
+        ---Add comment on the line below
+        below = '<leader>co',
+        ---Add comment at the end of line
+        eol = '<leader>ca',
+    },
+    ---Enable keybindings
+    ---NOTE: If given `false` then the plugin won't create any mappings
+    mappings = {
+        ---Operator-pending mapping; `gcc` `gbc` `gc[count]{motion}` `gb[count]{motion}`
+        basic = true,
+        ---Extra mapping; `gco`, `gcO`, `gcA`
+        extra = true,
+    },
+    ---Function to call before (un)comment
+    pre_hook = nil,
+    ---Function to call after (un)comment
+    post_hook = nil,
+  }
 end
 
 -- TODO: vim-cursorword
