@@ -1,0 +1,71 @@
+{
+  "#ifdef": {
+    "prefix": "#ifdef",
+    "body": [
+      "#ifdef __${1:DEBUG}_H__",
+      "#define $0",
+
+      "#endif /* ifdef __$1_H__ */"
+    ],
+    "description": "add define for #ifdef"
+  },
+  "#ifndef": {
+    "prefix": "#ifndef",
+    "body": [
+      "#ifndef __${1:DEBUG}_H__",
+      "#define __$1_H__",
+      "",
+      "$0",
+      "",
+      "#endif /* ifndef __$1_H__ */"
+    ],
+    "description": "add define for #ifndef"
+  },
+  "/**/func_no_param": {
+    "prefix": "/**/function_no_param",
+    "body": [
+      "/**",
+        "* @brief  ${1:describe}.",
+        "* @param  无.",
+        "* @retval ${0:describe for return val}.",
+      "*/"
+    ],
+    "description": "add comment for function"
+  },
+  "/**/func": {
+    "prefix": "/**/function",
+    "body": [
+      "/**",
+        "* @brief  ${1:describe}.",
+        "* @param  ${2:param}: ${3:describe for param}.",
+        "* @retval ${0:describe for return val}.",
+      "*/"
+    ],
+    "description": "add comment for function"
+  },
+  "//line": {
+    "prefix": "//line",
+    "body": [
+      "// ${0:comment after the line}"
+    ],
+    "description": "comment after the line"
+  },
+  "/**/line": {
+    "prefix": "/**/line",
+    "body": [
+      "/* ${0:comment a line} */"
+    ],
+    "description": "comment for line"
+  },
+  "/**/block": {
+    "prefix": "/**/block",
+    "body": [
+      "/*",
+      "  * ${1:comment for first line}",
+      "  * ${2:comment for second line}",
+      "  * ${0:comment for third line}",
+      "*/"
+    ],
+    "description": "comment for block"
+  }
+}
