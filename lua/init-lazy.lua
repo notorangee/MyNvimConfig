@@ -92,7 +92,7 @@ require("lazy").setup({
     config = function()
       require("lsp.cmp")
     end,
-    event = "BufReadPre",
+    event = "BufRead",
   },
 	{
     "hrsh7th/cmp-buffer",
@@ -202,7 +202,7 @@ require("lazy").setup({
       {"<C-j>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>", mode = {"n", "i"}, silent = true},
       {"<C-k>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>", mode = {"n", "i"}, silent = true},
     },
-    event = "BufReadPre",
+    event = "BufRead",
   },
 
 	{
@@ -216,7 +216,7 @@ require("lazy").setup({
 	-- Snippets
   {
     "saadparwaiz1/cmp_luasnip", -- Snippets source for nvim-cmp
-    lazy = true,
+    event = "BufRead",
   },
 
   {
@@ -224,7 +224,7 @@ require("lazy").setup({
     config = function()
       require("module.luasnip")
     end,
-    lazy = true,
+    event = "BufRead",
   },
 
 	-- nvim-gps
@@ -232,13 +232,13 @@ require("lazy").setup({
 		"SmiteshP/nvim-gps",
 		dependencies = "nvim-treesitter/nvim-treesitter",
     config = other_config.nvimgps,
-    event = "BufReadPre",
+    event = "BufRead",
 	},
 
 	-- auto-tag
   {
     "windwp/nvim-ts-autotag",
-    event = "BufReadPre",
+    event = "BufRead",
   },
 
 	-- auto-pairs
@@ -275,14 +275,14 @@ require("lazy").setup({
 	-- surround
   {
     "tpope/vim-surround",
-    event = "BufReadPre",
+    event = "BufRead",
   },
 
 	-- rainbow
 	{
     "luochen1990/rainbow",
     config = other_config.rainbow,
-    event = "BufReadPre",
+    event = "BufRead",
   },
 
 	-- wildfire
@@ -295,7 +295,7 @@ require("lazy").setup({
   {
     "airblade/vim-rooter",
     config = other_config.rooter,
-    event = "BufReadPre",
+    event = "BufRead",
   },
 
 	-- markdown-preview
@@ -319,7 +319,7 @@ require("lazy").setup({
 	-- vim-visual-multi
   {
     "mg979/vim-visual-multi",
-    event = "BufReadPre",
+    event = "BufRead",
   },
 
 	-- nerd commenter
@@ -337,7 +337,7 @@ require("lazy").setup({
   {
     "itchyny/vim-cursorword",
     config = other_config.cursorword,
-    event = "BufReadPre",
+    event = "BufRead",
   },
 
 	-- codeformat
@@ -362,7 +362,7 @@ require("lazy").setup({
 	{
     "AndrewRadev/switch.vim",
     config = other_config.booleanswitch,
-    event = "BufReadPre",
+    event = "BufRead",
   },
 
 	-- toggleterm
@@ -387,7 +387,7 @@ require("lazy").setup({
   {
     "lewis6991/gitsigns.nvim",
     config = other_config.gitsigns,
-    event = "BufReadPre",
+    event = "BufRead",
   },
 
 	-- todo
@@ -401,7 +401,7 @@ require("lazy").setup({
       {"t]", function() require("todo-comments").jump_next() end, desc = "Next todo comment", silent = true},
       {"t[", function() require("todo-comments").jump_prev() end, desc = "Previous todo comment", silent = true},
     },
-    event = "BufReadPre",
+    event = "BufRead",
 	},
 
 	-- colorizer
@@ -451,6 +451,6 @@ require("lazy").setup({
   {
     "lukas-reineke/indent-blankline.nvim",
     config = other_config.blankline,
-    event = "BufReadPre",
+    event = "BufRead",
   },
 })
