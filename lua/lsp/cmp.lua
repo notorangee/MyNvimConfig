@@ -15,15 +15,11 @@ end
 
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
 local servers = {
-	"rust_analyzer",
 	"cmake",
-	"dockerls",
 	"jsonls",
-	"kotlin_language_server",
 	"marksman",
 	"pyright",
 	"sqlls",
-	"vuels",
 	"lemminx",
 	"yamlls",
 	"gopls",

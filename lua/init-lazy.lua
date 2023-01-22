@@ -16,7 +16,7 @@ require("lazy").setup({
   
 	-- gruvbox
 	{
-    "morhetz/gruvbox",
+    "sainnhe/gruvbox-material",
     config = function()
       require("module.gruvbox")
     end,
@@ -41,6 +41,11 @@ require("lazy").setup({
     end,
     event = "VimEnter",
 	},
+
+  {
+    "p00f/nvim-ts-rainbow",
+    event = "BufRead",
+  },
 
 	-- treesitter-context
 	{
@@ -80,7 +85,7 @@ require("lazy").setup({
     config = function()
       require("lsp.mason")
     end,
-    lazy = true,
+    event = "BufRead",
   },
 	{
     "williamboman/mason-lspconfig.nvim",
@@ -275,13 +280,6 @@ require("lazy").setup({
 	-- surround
   {
     "tpope/vim-surround",
-    event = "BufRead",
-  },
-
-	-- rainbow
-	{
-    "luochen1990/rainbow",
-    config = other_config.rainbow,
     event = "BufRead",
   },
 

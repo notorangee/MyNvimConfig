@@ -1,10 +1,5 @@
 local other = {}
 
--- TODO: rainbow
-function other.rainbow()
-  vim.g.rainbow_active = 1
-end
-
 -- TODO: rooter
 function other.rooter()
   vim.g.rooter_patterns          = { '=src', '=java', '.git', 'Makefile', 'makefile' }

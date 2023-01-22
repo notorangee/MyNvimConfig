@@ -1,6 +1,6 @@
 require("mason-lspconfig").setup({
-    ensure_installed = {"sumneko_lua", "clangd", "rust_analyzer", "bashls", "cmake", "cssls", "dockerls", "html", "jsonls",
-      "tsserver", "kotlin_language_server", "marksman", "pyright", "sqlls", "vimls", "vuels", "lemminx", "yamlls", "gopls" },
+    ensure_installed = {"sumneko_lua", "clangd", "bashls", "cmake", "cssls", "html", "jsonls",
+      "tsserver", "marksman", "pyright", "sqlls", "vimls", "lemminx", "yamlls", "gopls" },
      automatic_installation = true,
 })
 
