@@ -341,8 +341,8 @@ require("lazy").setup({
       require("module.formatter")
     end,
     keys = {
-      {"gs", "<cmd>lua vim.lsp.buf.formatting()<cr>1<cr><cr>", silent = true},
-      {"gl", "<cmd>lua vim.lsp.buf.range_formatting()<cr>1<cr><ESC>", mode = {"n", "v"}, silent = true},
+      { "gs", "<cmd>Format<cr>", silent = true },
+      { "gl", "<cmd>lua format_range_operator()<cr>", mode = { "n", "v" }, silent = true },
     }
   },
 

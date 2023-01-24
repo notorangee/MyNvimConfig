@@ -3,6 +3,10 @@ vim.o.number = true
 -- 关闭虚拟文字提示
 vim.diagnostic.config({
   virtual_text = false,
+  signs = true,
+  underline = true,
+  update_in_insert = false,
+  severity_sort = false,
 })
 -- 显示当前行，以及其他相对行
 vim.o.relativenumber = true;
@@ -79,7 +83,7 @@ func! Run()
     :term java %<
   elseif &filetype == 'c'
     "let s:getDevice = system('echo ${$(ls /dev/ | grep "ttyUSB")%0*}')
-      :term make && make install
+      :term bear -- make && make install
       "silent exec "!g++ % -o %<\.out"
       ":term ./%<\.out
   elseif &filetype == 'sh'
@@ -144,3 +148,18 @@ autocmd InsertLeave * call Fcitx2en()
 "autocmd InsertEnter * call Fcitx2zh()
 
 ]])
+
+-- lua 配置
+-- 格式化函数配置
+function format_range_operator()
+  local old_func = vim.go.operatorfunc
+  _G.op_func_formatting = function()
+    local start = vim.api.nvim_buf_get_mark(0, '[')
+    local finish = vim.api.nvim_buf_get_mark(0, ']')
+    vim.lsp.buf.range_formatting({}, start, finish)
+    vim.go.operatorfunc = old_func
+    _G.op_func_formatting = nil
+  end
+  vim.go.operatorfunc = 'v:lua.op_func_formatting'
+  vim.api.nvim_feedkeys('g@', 'n', false)
+end
