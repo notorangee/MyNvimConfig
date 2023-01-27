@@ -67,5 +67,16 @@
       "*/"
     ],
     "description": "comment for block"
+  },
+  "switch case": {
+    "prefix": "switch case",
+    "body": [
+      "switch (${1:switch_on}) {",
+      "\tcase ${2:case1} : ${3:exp1};$4 break;",
+      "\tcase ${5:case2} : ${6:exp2};$7 break;",
+      "\tdefault : $0; break;",
+      "}"
+    ],
+    "description": "Code snippet for switch statement"
   }
 }

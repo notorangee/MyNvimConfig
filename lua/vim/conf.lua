@@ -83,7 +83,7 @@ func! Run()
     :term java %<
   elseif &filetype == 'c'
     "let s:getDevice = system('echo ${$(ls /dev/ | grep "ttyUSB")%0*}')
-    if !filereadable('compile_commands.json')
+    if !filereadable('project.elf')
       :term bear -- make && make install
     else
       :term make && make install

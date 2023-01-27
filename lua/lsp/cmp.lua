@@ -61,6 +61,7 @@ lsp.clangd.setup({
     "--enable-config",
     "--pch-storage=memory",
     "--background-index",
+    "--header-insertion=never",
   },
   filetypes = {"c", "cpp", "objc", "objcpp", "cuda", "proto"};
   single_file_support = true,
