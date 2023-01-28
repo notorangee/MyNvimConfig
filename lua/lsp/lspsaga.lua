@@ -1,51 +1,128 @@
 local lspsaga = require 'lspsaga'
-lspsaga.setup {
-  debug = false,
-  use_saga_diagnostic_sign = true,
-  -- diagnostic sign
-  error_sign = "",
-  warn_sign = "",
-  hint_sign = "",
-  infor_sign = "",
-  diagnostic_header_icon = "  ",
-  
-  -- code action title icon
-  code_action_icon = "",
-  code_action_prompt = {
-    enable = false,
-    sign = false,
-    sign_priority = 40,
-    virtual_text = false,
+lspsaga.setup ( {
+  preview = {
+    lines_above = 0,
+    lines_below = 10,
   },
-  finder_definition_icon = "  ",
-  finder_reference_icon = "  ",
-  max_preview_lines = 10,
-  finder_action_keys = {
-    open = "o",
-    vsplit = "s",
-    split = "i",
-    quit = "q",
+  scroll_preview = {
     scroll_down = "<C-j>",
     scroll_up = "<C-k>",
   },
-  code_action_keys = {
-    quit = "q",
-    exec = "<CR>",
+  request_timeout = 2000,
+  ui = {
+    -- Currently, only the round theme exists
+    theme = "round",
+    -- This option only works in Neovim 0.9
+    title = true,
+    -- Border type can be single, double, rounded, solid, shadow.
+    border = "single",
+    winblend = 0,
+    expand = "",
+    collapse = "",
+    preview = " ",
+    code_action = "",
+    diagnostic = "",
+    incoming = " ",
+    outgoing = " ",
+    colors = {
+      -- Normal background color for floating window
+      normal_bg = "#1d1536",
+      -- Title background color
+      title_bg = "#afd700",
+      red = "#e95678",
+      magenta = "#b33076",
+      orange = "#FF8700",
+      yellow = "#f7bb3b",
+      green = "#afd700",
+      cyan = "#36d0e0",
+      blue = "#61afef",
+      purple = "#CBA6F7",
+      white = "#d1d4cf",
+      black = "#1c1c19",
+    },
+    kind = {},
   },
-  rename_action_keys = {
+  finder = {
+    edit = { "o", "<CR>" },
+    vsplit = "s",
+    split = "i",
+    tabe = "t",
+    quit = { "q", "<ESC>" },
+  },
+  definition = {
+    edit = "<C-c>o",
+    vsplit = "<C-c>v",
+    split = "<C-c>i",
+    tabe = "<C-c>t",
+    quit = "q",
+    close = "<Esc>",
+  },
+  code_action = {
+    num_shortcut = true,
+    keys = {
+      -- string | table type
+      quit = "q",
+      exec = "<CR>",
+    },
+  },
+  lightbulb = {
+    enable = true,
+    enable_in_insert = true,
+    sign = true,
+    sign_priority = 40,
+    virtual_text = true,
+  },
+  diagnostic = {
+    show_code_action = true,
+    show_source = true,
+    jump_num_shortcut = true,
+    keys = {
+      exec_action = "o",
+      quit = "q",
+      go_action = "g"
+    },
+  },
+  rename = {
     quit = "<C-c>",
     exec = "<CR>",
+    mark = "x",
+    confirm = "<CR>",
+    in_select = true,
   },
-  definition_preview_icon = " ",
-  border_style = "single",
-  rename_prompt_prefix = "➤",
-  rename_output_qflist = {
+  outline = {
+    win_position = "right",
+    win_with = "",
+    win_width = 30,
+    show_detail = true,
+    auto_preview = true,
+    auto_refresh = true,
+    auto_close = true,
+    custom_sort = nil,
+    keys = {
+      jump = "o",
+      expand_collapse = "u",
+      quit = "q",
+    },
+  },
+  callhierarchy = {
+    show_detail = false,
+    keys = {
+      edit = "e",
+      vsplit = "s",
+      split = "i",
+      tabe = "t",
+      jump = "o",
+      quit = "q",
+      expand_collapse = "u",
+    },
+  },
+  symbol_in_winbar = {
     enable = true,
-    auto_open_qflist = true,
+    separator = " ",
+    hide_keyword = true,
+    show_file = true,
+    folder_level = 2,
+    respect_root = false,
+    color_mode = true,
   },
-  server_filetype_map = {},
-  use_diagnostic_virtual_text = false,
-  diagnostic_prefix_format = " %d. ",
-  diagnostic_message_format = "%m %c",
-  highlight_prefix = false,
-}
+} )

@@ -8,6 +8,27 @@ vim.diagnostic.config({
   update_in_insert = false,
   severity_sort = false,
 })
+-- 开启lsp诊断图标
+vim.fn.sign_define(
+  'DiagnosticSignError',
+  { texthl = 'DiagnosticSignError', text = '', numhl = 'DiagnosticSignError' }
+)
+
+vim.fn.sign_define(
+  'DiagnosticSignWarn',
+  { texthl = 'DiagnosticSignWarn', text = '', numhl = 'DiagnosticSignWarn' }
+)
+
+vim.fn.sign_define(
+  'DiagnosticSignHint',
+  { texthl = 'DiagnosticSignHint', text = '', numhl = 'DiagnosticSignHint' }
+)
+
+vim.fn.sign_define(
+  'DiagnosticSignInfo',
+  { texthl = 'DiagnosticSignInfo', text = '', numhl = 'DiagnosticSignInfo' }
+)
+
 -- 显示当前行，以及其他相对行
 vim.o.relativenumber = true;
 -- 光标所在的行高亮

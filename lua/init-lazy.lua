@@ -5,7 +5,7 @@ require("lazy").setup({
 
 	-- BasePlug
   {
-    "kyazdani42/nvim-web-devicons",
+    "nvim-tree/nvim-web-devicons",
     lazy = true,
   },
   
@@ -68,7 +68,7 @@ require("lazy").setup({
 	-- lualine
 	{
 		"nvim-lualine/lualine.nvim",
-		dependencies = { "kyazdani42/nvim-web-devicons", opt = true },
+		dependencies = {{  "nvim-tree/nvim-web-devicons", opt = true  }},
     config = function()
       require("module.lualine")
     end,
@@ -148,7 +148,7 @@ require("lazy").setup({
 	{
 		"nvim-telescope/telescope.nvim",
 		branch = "0.1.x",
-		dependencies = { "nvim-lua/plenary.nvim", 'nvim-telescope/telescope-fzf-native.nvim' },
+		dependencies = { { "nvim-lua/plenary.nvim" }, { 'nvim-telescope/telescope-fzf-native.nvim' } },
     config = function()
       require("module.telescope")
     end,
@@ -172,7 +172,7 @@ require("lazy").setup({
 
   {
     'tzachar/fuzzy.nvim',
-    dependencies = {'nvim-telescope/telescope-fzf-native.nvim'},
+    dependencies = {{ 'nvim-telescope/telescope-fzf-native.nvim' }},
     lazy = true,
   },
 
@@ -187,35 +187,28 @@ require("lazy").setup({
 
 	-- lspsaga
   {
-    "kkharji/lspsaga.nvim",
+    "glepnir/lspsaga.nvim",
+    dependencies = { {"nvim-tree/nvim-web-devicons"} },
     config = function()
       require("lsp.lspsaga")
     end,
     keys = {
-      { "ga", "<cmd>Lspsaga code_action<cr>", silent = true },
-      { "<leader>ga", ":<c-u>Lspsaga range_code_action<cr>", silent = true },
+      { "ga", "<cmd>Lspsaga code_action<cr>", mode = {"n", "v"}, silent = true },
+      -- { "<leader>ga", ":<c-u>Lspsaga range_code_action<cr>", silent = true },
       {"rn", "<cmd>Lspsaga rename<cr>", silent = true},
-      {"gr", "<cmd>lua require'lspsaga.provider'.lsp_finder()<cr>", silent = true},
-      {"<C-h>", "<cmd>lua require('lspsaga.signaturehelp').signature_help()<cr>", mode = {"n", "i"}, silent = true},
+      {"gr", "<cmd>Lspsaga lsp_finder<cr>", silent = true},
+      -- {"<C-h>", "<cmd>lua require('lspsaga.signaturehelp').signature_help()<cr>", mode = {"n", "i"}, silent = true},
       {"gk", "<cmd>Lspsaga hover_doc<cr>", silent = true},
-      {"gd", vim.lsp.buf.definition, silent = true},
+      {"go", "<cmd>Lspsaga outline<cr>", silent = true},
+      {"gd", "<cmd>Lspsaga goto_definition<cr>", silent = true},
+      {"gD", "<cmd>Lspsaga peek_definition<cr>", silent = true},
       {'gt', vim.lsp.buf.type_definition, silent = true},
       {"gi", vim.lsp.buf.implementation, silent = true},
       {"ge", "<cmd>Lspsaga show_line_diagnostics<cr>", mode = {"n", "v"}, silent = true},
       {"g]", "<cmd>Lspsaga diagnostic_jump_next<cr>", silent = true},
       {"g[", "<cmd>Lspsaga diagnostic_jump_prev<cr>", silent = true},
-      {"<C-j>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<cr>", mode = {"n", "i"}, silent = true},
-      {"<C-k>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<cr>", mode = {"n", "i"}, silent = true},
     },
     event = "BufRead",
-  },
-
-	{
-    "simrat39/symbols-outline.nvim",
-    config = function()
-      require("module.outline")
-    end,
-    keys = {{"go", "<cmd>SymbolsOutline<cr>", mode = {"n", "v"}, silent = true}},
   },
 
 	-- Snippets
@@ -235,7 +228,7 @@ require("lazy").setup({
 	-- nvim-gps
 	{
 		"SmiteshP/nvim-gps",
-		dependencies = "nvim-treesitter/nvim-treesitter",
+		dependencies = { { "nvim-treesitter/nvim-treesitter" } },
     config = other_config.nvimgps,
     event = "BufRead",
 	},
@@ -259,7 +252,7 @@ require("lazy").setup({
 	{
 		"kyazdani42/nvim-tree.lua",
 		dependencies = {
-			"kyazdani42/nvim-web-devicons", -- optional, for file icons
+			{ "nvim-tree/nvim-web-devicons" }, -- optional, for file icons
 		},
 		tag = "nightly", -- optional, updated every week. (see issue #1193,
     config = function()
@@ -387,7 +380,7 @@ require("lazy").setup({
 	-- todo
 	{
 		"folke/todo-comments.nvim",
-		dependencies = { "nvim-lua/plenary.nvim" },
+		dependencies = { { "nvim-lua/plenary.nvim" } },
     config = function()
       require("module.todocomments")
     end,
@@ -402,13 +395,13 @@ require("lazy").setup({
   {
     "norcalli/nvim-colorizer.lua",
     config = other_config.colorizer,
-    ft = {"css", "html", "js"},
+    event = "BufRead",
   },
 
 	-- trouble
 	{
 		"folke/trouble.nvim",
-		dependencies = { "kyazdani42/nvim-web-devicons" },
+		dependencies = { { "nvim-tree/nvim-web-devicons" } },
     config = function()
       require("module.trouble")
     end,
