@@ -96,6 +96,9 @@ telescope.setup {
     git_commits = {
       theme = "ivy",
     },
+    grep_string = {
+      theme = "ivy",
+    },
   },
   extensions = {
     fzf = {
