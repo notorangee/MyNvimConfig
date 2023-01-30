@@ -11,19 +11,12 @@ vim.cmd([[
     let &undodir=s:target_path
     set undofile
   endif
-  " 自动打开差异窗口
-  if !exists('g:undotree_DiffAutoOpen')
-    let g:undotree_DiffAutoOpen = 1
-  endif
-  " 打开撤销树就将光标移动到撤销树上
-  if !exists('g:undotree_SetFocusWhenToggle')
-    let g:undotree_SetFocusWhenToggle = 1
-  endif
-  if !exists('g:undotree_RelativeTimestamp')
-    let g:undotree_RelativeTimestamp = 1
-  endif
-  " 突出显示更改的文本
-  if !exists('g:undotree_HighlightChangedText')
-    let g:undotree_HighlightChangedText = 1
-  endif
 ]])
+
+-- 自动打开差异窗口
+vim.g.undotree_DiffAutoOpen = 1
+-- 打开撤销树就将光标移动到撤销树上
+vim.g.undotree_SetFocusWhenToggle = 1
+vim.g.undotree_RelativeTimestamp = 1
+-- 突出显示更改的文本
+vim.g.undotree_HighlightChangedText = 1
