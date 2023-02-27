@@ -1,3 +1,7 @@
+-- 设置字符集
+vim.o.fileencodings="utf-8,ucs-bom,gb18030,gbk,gb2312,cp936"
+vim.o.termencoding="utf-8"
+vim.o.encoding="utf-8"
 -- 显示行号
 vim.o.number = true
 -- 关闭虚拟文字提示
@@ -115,7 +119,7 @@ func! Run()
     silent exec '!chmod +x %'
     :term ./%
   elseif &filetype == 'markdown'
-    exec 'MarkdownPreview'
+    exec 'MarkdownPreviewToggle'
   elseif ( &filetype == 'html' || &filetype == 'xml' )
     if !g:execResult
       silent exec '!chromium --new-window % &'

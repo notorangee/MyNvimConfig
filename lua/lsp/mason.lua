@@ -1,7 +1,8 @@
 require("mason-lspconfig").setup({
-    ensure_installed = {"sumneko_lua", "clangd", "bashls", "cmake", "cssls", "html", "jsonls",
-      "tsserver", "marksman", "pyright", "sqlls", "vimls", "lemminx", "yamlls", "gopls" },
-     automatic_installation = true,
+    -- ensure_installed = {"lua_ls", "clangd", "bashls", "cmake", "cssls", "html", "jsonls",
+    --   "tsserver", "marksman", "pyright", "sqlls", "vimls", "lemminx", "yamlls", "gopls" },
+    ensure_installed = {},
+    automatic_installation = true,
 })
 
 require("mason").setup({
@@ -51,7 +52,7 @@ require("mason").setup({
         -- and is not recommended.
         --
         -- Example: { "--proxy", "https://proxyserver" }
-        install_args = {"--proxy", "socks5://127.0.0.1:1080"},
+        -- install_args = {"--proxy", "socks5://127.0.0.1:1080"},
     },
 
     -- Controls to which degree logs are written to the log file. It's useful to set this to vim.log.levels.DEBUG when

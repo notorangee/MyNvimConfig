@@ -3,7 +3,7 @@ local other = {}
 -- TODO: rooter
 function other.rooter()
   vim.g.rooter_patterns          = { '=src', '=java', '.git', 'Makefile', 'makefile' }
-  vim.g.rooter_targets           = '/,*.c,*.h,*.java'
+  vim.g.rooter_targets           = '/,*.*'
   vim.g.JavaComplete_ImportOrder = { 'com.','Java.','Javax.' }
   vim.g.rooter_change_directory_for_non_project_files = 'current'
 end

@@ -1,11 +1,11 @@
 vim.g.translator_target_lang = 'zh'
 vim.g.translator_source_lang = 'auto'
 vim.g.translator_default_engines = {
-  'google', 'youdao', 'bing', 'haici'
+  'youdao', 'bing', 'haici'
 }
-vim.g.translator_proxy_url = 'socks5://127.0.0.1:1080'
+-- vim.g.translator_proxy_url = 'socks5://127.0.0.1:1080'
 vim.g.translator_history_enable = false
-vim.g.translator_window_type = 'preview'
+vim.g.translator_window_type = 'popup'
 
 vim.cmd([[
 

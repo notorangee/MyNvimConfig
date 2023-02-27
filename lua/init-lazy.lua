@@ -80,6 +80,7 @@ require("lazy").setup({
 	  "neovim/nvim-lspconfig", -- Collection of configurations for built-in LSP client
     lazy = true,
   },
+
 	{
     "williamboman/mason.nvim",
     config = function()
@@ -221,6 +222,8 @@ require("lazy").setup({
 
   {
     "L3MON4D3/LuaSnip",
+   --  version = "<CurrentMajor>.*",
+	  -- build = "make install_jsregexp",
     config = function()
       require("module.luasnip")
     end,
@@ -300,7 +303,7 @@ require("lazy").setup({
     config = function()
       require("module.markdown")
     end,
-    event = "BufRead",
+    ft = "markdown",
 	},
 
 	-- vim-table-mode
@@ -427,7 +430,8 @@ require("lazy").setup({
       {"<leader>tv", "<Plug>TranslateV", mode = "v", silent = true},
       {"tw", "<Plug>TranslateW", silent = true},
       {"<leader>tw", "<Plug>TranslateWV", mode = "v", silent = true},
-      {"tr", "<Plug>TranslateR", silent = true},
+      {"tr", "<Plug>TranslateR --engines=google,youdao --target_lang=zh --source_lang=en", silent = true},
+      {"<leader>tr", "<Plug>TranslateRV --engines=google,youdao --target_lang=en --source_lang=zh", mode = "v", silent = true},
       {"tx", "<Plug>TranslateX", silent = true},
       {"te", "<Plug>Translate <cmd>call TranslatorSpeak(v:false)<cr>", silent = true},
       {"<leader>te", "<Plug>TranslateV <cmd>call TranslatorSpeak(v:true)<cr>", mode = "v", silent = true},
