@@ -13,11 +13,15 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-local status, _ = pcall(require, "init-lazy")
+vim.g.mapleader = ' ' -- 在初始化lazy前映射leader
+
+local status, lazy_init = pcall(require, "init-lazy")
+local lazy_opts = require("init_lazy_opts")
 if not status then
 	vim.notify("初始化lazy失败")
 end
 
+require("lazy").setup(lazy_init, lazy_opts)
 
 -- NOTE: vim配置
 require("vim.conf")

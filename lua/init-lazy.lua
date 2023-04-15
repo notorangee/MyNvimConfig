@@ -1,7 +1,6 @@
 local other_config = require("module.other")
-vim.g.mapleader = ' ' -- 在初始化lazy前映射leader
 
-require("lazy").setup({
+return {
 
 	-- BasePlug
   {
@@ -446,4 +445,4 @@ require("lazy").setup({
     config = other_config.blankline,
     event = "BufRead",
   },
-})
+}

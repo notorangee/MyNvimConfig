@@ -1,7 +1,7 @@
 -- TODO: treesitter configrution
 local config = require'nvim-treesitter.configs'
 config.setup {
-  ensure_installed = {"c", "lua", "java", "markdown", "html", "css", "vim", "json", "make", "python", "help"},
+  ensure_installed = {"c", "lua", "java", "markdown", "html", "css", "vim", "json", "make", "python"},
   sync_install = false,
   auto_install = false,
   ignore_install = {},
