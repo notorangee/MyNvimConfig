@@ -1,4 +1,4 @@
-local other_config = require("module.other")
+local other = require("module.other")
 
 return {
 
@@ -55,7 +55,7 @@ return {
 	{
 		"phaazon/hop.nvim",
 		branch = "v2", -- optional but strongly recommended
-    config = other_config.hop,
+    config = other.hop,
     keys = {
       {"fs", "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", silent = true},
       {"Fs", "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", silent = true},
@@ -233,7 +233,7 @@ return {
 	{
 		"SmiteshP/nvim-gps",
 		dependencies = { { "nvim-treesitter/nvim-treesitter" } },
-    config = other_config.nvimgps,
+    config = other.nvimgps,
     event = "BufRead",
 	},
 
@@ -289,7 +289,7 @@ return {
 	-- rooter
   {
     "airblade/vim-rooter",
-    config = other_config.rooter,
+    config = other.rooter,
     event = "BufRead",
   },
 
@@ -320,14 +320,14 @@ return {
 	-- comment
   {
     'numToStr/Comment.nvim',
-    config = other_config.comment,
+    config = other.comment,
     event = "BufRead",
   },
 
 	-- vim-cursorword
   {
     "itchyny/vim-cursorword",
-    config = other_config.cursorword,
+    config = other.cursorword,
     event = "BufRead",
   },
 
@@ -352,14 +352,14 @@ return {
 	-- boolean switch
 	{
     "AndrewRadev/switch.vim",
-    config = other_config.booleanswitch,
+    config = other.booleanswitch,
     keys = {{"sw", "<cmd>Switch<cr>", mode = {"n", "v"}, silent = true}},
   },
 
 	-- toggleterm
   {
     "akinsho/toggleterm.nvim",
-    config = other_config.toggleterm,
+    config = other.toggleterm,
     keys = {{"TT", "<cmd>ToggleTerm size=10 dir=%:p:h <cr>", silent = true}},
   },
 
@@ -377,7 +377,7 @@ return {
 	-- git
   {
     "lewis6991/gitsigns.nvim",
-    config = other_config.gitsigns,
+    config = other.gitsigns,
     event = "BufRead",
   },
 
@@ -398,7 +398,7 @@ return {
 	-- colorizer
   {
     "norcalli/nvim-colorizer.lua",
-    config = other_config.colorizer,
+    config = other.colorizer,
     event = "BufRead",
   },
 
@@ -442,7 +442,7 @@ return {
 	-- indent-blankline
   {
     "lukas-reineke/indent-blankline.nvim",
-    config = other_config.blankline,
+    config = other.blankline,
     event = "BufRead",
   },
 }
