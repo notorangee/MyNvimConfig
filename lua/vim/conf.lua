@@ -108,10 +108,10 @@ func! Run()
     :term java %<
   elseif &filetype == 'c'
     "let s:getDevice = system('echo ${$(ls /dev/ | grep "ttyUSB")%0*}')
-    if !filereadable('project.elf')
-      :term bear -- make && make install
+    if !filereadable('project.hex')
+      :term bear -- make && make hex install
     else
-      :term make && make install
+      :term make && make hex install
     endif
       "silent exec "!g++ % -o %<\.out"
       ":term ./%<\.out

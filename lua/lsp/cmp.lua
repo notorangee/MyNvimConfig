@@ -7,6 +7,9 @@ local lsp = require("lspconfig")
 local cmp_lsp = require("cmp_nvim_lsp")
 -- local capabilities = cmp_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
 local capabilities = cmp_lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
+local attach = function(client, bufnr)
+	require("lsp-inlayhints").on_attach(client, bufnr)
+end
   -- capabilities.textDocument.completion.completionItem.snippetSupport = true
 local has_words_before = function()
 	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -28,7 +31,7 @@ local servers = {
 -- other language server
 for _, server in ipairs(servers) do
 	lsp[server].setup({
-		-- on_attach = my_custom_on_attach,
+		on_attach = attach,
 		capabilities = capabilities,
 	})
 end
@@ -55,6 +58,7 @@ end
 
 -- clangd
 lsp.clangd.setup({
+  on_attach = attach,
 	capabilities = capabilities,
   cmd = {
     "clangd",
@@ -68,10 +72,24 @@ lsp.clangd.setup({
   args = {
     "-ferror-limit=0"
   },
+  settings = {
+    CompileFlags = {
+      Add = {
+        "-ferror-limit=0",
+      },
+    },
+    InlayHints = {
+      Designators = true,
+	    Enabled = true,
+	    ParameterNames = true,
+	    DeducedTypes = true,
+    },
+  },
 })
 
 -- html
 lsp.html.setup({
+  on_attach = attach,
 	capabilities = capabilities,
 	cmd = {
 		"vscode-html-language-server",
@@ -93,6 +111,7 @@ lsp.html.setup({
 
 -- cssls
 lsp.cssls.setup({
+  on_attach = attach,
 	capabilities = capabilities,
 	cmd = {
 		"vscode-css-language-server",
@@ -119,6 +138,7 @@ lsp.cssls.setup({
 
 -- tsserver/javascript
 lsp.tsserver.setup({
+  on_attach = attach,
 	capabilities = capabilities,
 	cmd = {
 		"typescript-language-server",
@@ -140,6 +160,7 @@ lsp.tsserver.setup({
 
 -- lua
 lsp.lua_ls.setup({
+  on_attach = attach,
 	capabilities = capabilities,
 	settings = {
 		Lua = {
@@ -165,6 +186,7 @@ lsp.lua_ls.setup({
 
 -- bashls
 lsp.bashls.setup({
+  on_attach = attach,
 	capabilities = capabilities,
 	cmd = {
 		"bash-language-server",
@@ -181,6 +203,7 @@ lsp.bashls.setup({
 
 -- vimls
 lsp.vimls.setup({
+  on_attach = attach,
 	cmd = {
 		"vim-language-server",
 		"--stdio",

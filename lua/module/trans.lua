@@ -1,9 +1,9 @@
 return {
     ---@type string the directory for database file and password file
-    dir      = require 'Trans'.plugin_dir,
-    debug    = true,
+    -- dir      = require 'Trans'.plugin_dir,
+    -- debug    = true,
     ---@type 'default' | 'dracula' | 'tokyonight' global Trans theme [see lua/Trans/style/theme.lua]
-    theme    = 'default', -- default | tokyonight | dracula
+    theme    = 'tokyonight', -- default | tokyonight | dracula
     strategy = {
         ---@type { frontend:string, backend:string | string[] } fallback strategy for mode
         default = {
@@ -26,9 +26,9 @@ return {
             auto_play = true,
             ---@type {open: string | boolean, close: string | boolean, interval: integer} Hover Window Animation
             animation = {
-                open = 'slid', -- 'fold', 'slid'
-                close = 'slid',
-                interval = 12,
+                open = 'fold', -- 'fold', 'slid'
+                close = 'fold',
+                interval = 5,
             },
             timeout   = 2000,
         },
@@ -70,10 +70,10 @@ return {
                 },
                 offline = {
                     'title',
-                    'tag',
+                    'translation',
                     'pos',
                     'exchange',
-                    'translation',
+                    'tag',
                     'definition',
                 },
                 youdao = {
