@@ -8,7 +8,7 @@ return {
         ---@type { frontend:string, backend:string | string[] } fallback strategy for mode
         default = {
             frontend = 'hover',
-            backend = '*',
+            backend = {'youdao', 'baidu'},
         },
     },
     ---@type table frontend options
@@ -63,6 +63,18 @@ return {
             },
             ---@type table<string, string[]> order to display translate result
             order             = {
+                youdao = {
+                    'title',
+                    'translation',
+                    'definition',
+                    'web',
+                },
+                baidu = {
+                    'title',
+                    'translation',
+                    'definition',
+                    'web',
+                },
                 default = {
                     'str',
                     'translation',
@@ -75,12 +87,6 @@ return {
                     'exchange',
                     'tag',
                     'definition',
-                },
-                youdao = {
-                    'title',
-                    'translation',
-                    'definition',
-                    'web',
                 },
             },
             icon              = {
