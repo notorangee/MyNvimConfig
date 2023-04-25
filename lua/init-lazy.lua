@@ -360,7 +360,7 @@ return {
   {
     "akinsho/toggleterm.nvim",
     config = other.toggleterm,
-    keys = {{"TT", "<cmd>ToggleTerm size=10 dir=%:p:h <cr>", silent = true}},
+    keys = {{"TT", "<cmd>ToggleTerm size=30 dir=%:p:h <cr>", silent = true}},
   },
 
 	-- spectre

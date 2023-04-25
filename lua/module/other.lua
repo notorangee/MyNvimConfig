@@ -77,7 +77,7 @@ function other.toggleterm()
     persist_size = true,
     persist_mode = true,
     shell = vim.o.shell,
-    direction = 'float',
+    direction = 'vertical',
   }
 end
 -- TODO: colorizer
