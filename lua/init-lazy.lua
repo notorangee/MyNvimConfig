@@ -471,4 +471,10 @@ return {
     "kkharji/sqlite.lua",
     lazy = true,
   },
+  {
+    "folke/which-key.nvim",
+    config = function()
+      require("module.whichkey")
+    end,
+  },
 }
