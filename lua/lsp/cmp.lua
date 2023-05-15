@@ -246,8 +246,8 @@ cmp.setup({
 	mapping = cmp.mapping.preset.insert({
 		["<C-k>"] = cmp.mapping.scroll_docs(-4),
 		["<C-j>"] = cmp.mapping.scroll_docs(4),
-		["<C-o>"] = cmp.mapping.complete(),
-		["<CR>"] = cmp.mapping.confirm({
+		["<C-p>"] = cmp.mapping.complete(),
+		["<C-o>"] = cmp.mapping.confirm({
 			behavior = cmp.ConfirmBehavior.Replace,
 			select = true,
 		}),
