@@ -2,6 +2,8 @@ local keymap = vim.keymap.set
 local opts = {noremap = true, silent = true}
 -- 更新单前文件配置
 keymap('n', '<leader>rv', ':w<CR>:source %<CR>', opts)
+-- 保存文件
+keymap('n', '<leader>rr', ':w<CR>', opts)
 -- 新建当前标签
 keymap('n', 'tn', ':tabnew%<CR>', opts)
 -- 关闭当前标签
