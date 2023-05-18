@@ -22,8 +22,9 @@ lspsaga.setup ( {
     preview = " ",
     code_action = "",
     diagnostic = "",
-    incoming = " ",
-    outgoing = " ",
+    hover = ' ',
+    incoming = "󰏷 ",
+    outgoing = "󰏻 ",
     colors = {
       -- Normal background color for floating window
       normal_bg = "#1d1536",
@@ -43,7 +44,7 @@ lspsaga.setup ( {
     kind = {},
   },
   finder = {
-    edit = { "o", "<CR>" },
+    edit = { "<C-o>", "<CR>" },
     vsplit = "s",
     split = "i",
     tabe = "t",
