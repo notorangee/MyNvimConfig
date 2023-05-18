@@ -79,7 +79,7 @@ vim.o.smartindent = true
 -- 开启主题颜色
 vim.o.termguicolors = true
 -- 禁用鼠标
-vim.o.mouse =  
+vim.o.mouse =
 
 vim.diagnostic.config({
   virtual_text = false,
