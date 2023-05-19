@@ -18,9 +18,9 @@ config.setup {
     -- colors = {}, -- table of hex strings
     -- termcolors = {} -- table of colour name strings
   },
-  -- autotag = {
-  --   enable = true,
-  -- }
+  autotag = {
+    enable = true,
+  }
 }
 require'treesitter-context'.setup{
     enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)

@@ -231,17 +231,16 @@ return {
 
 	-- nvim-gps
 	{
-		"SmiteshP/nvim-gps",
+		"AvavaAvaOrange/nvim-gps",
 		dependencies = { { "nvim-treesitter/nvim-treesitter" } },
-    config = other.nvimgps,
     event = "BufRead",
 	},
 
 	-- auto-tag
-  -- {
-  --   "windwp/nvim-ts-autotag",
-  --   event = "BufRead",
-  -- },
+  {
+    "windwp/nvim-ts-autotag",
+    event = "BufRead",
+  },
 
 	-- auto-pairs
   {

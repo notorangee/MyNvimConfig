@@ -95,11 +95,6 @@ function other.colorizer()
   )
 end
 
--- TODO: nvim-gps
-function other.nvimgps()
-  require("nvim-gps").setup()
-end
-
 -- TODO: auto-tag
 function other.autotag()
   require('nvim-ts-autotag').setup()
