@@ -63,22 +63,22 @@ function ReviseMarkdown( selectModeType, selectVisualMode, selectTitle )
     elseif a:selectModeType == 6
       let g:insertType = "~~~"
     elseif a:selectModeType == 7
-	if a:selectTitle == 1
-	  let g:insertType = "#"
-    	elseif a:selectTitle == 2
-	  let g:insertType = "##"
-    	elseif a:selectTitle == 3
-	  let g:insertType = "###"
-    	elseif a:selectTitle == 4
-	  let g:insertType = "####"
-    	elseif a:selectTitle == 5
-	  let g:insertType = "#####"
-    	endif
-    endif
+      if a:selectTitle == 1
+	      let g:insertType = "#"
+        	elseif a:selectTitle == 2
+	      let g:insertType = "##"
+        	elseif a:selectTitle == 3
+	      let g:insertType = "###"
+        	elseif a:selectTitle == 4
+	      let g:insertType = "####"
+        	elseif a:selectTitle == 5
+	      let g:insertType = "#####"
+        	endif
+      endif
     if !( a:selectModeType == 0 || a:selectModeType == 1 )
       if a:selectModeType == 7
-	call SetMarkdownContent(v:true)
-	return
+        call SetMarkdownContent(v:true)
+        return
       endif
       let g:execStatus = a:selectModeType != 6 ? SetMarkdownContent(v:false) : CodeBlockType(a:selectVisualMode)
       return
@@ -94,13 +94,20 @@ function SetMarkdownContent(isInsertTitle)
 endfunction
 
 function CodeBlockType(selectVisualMode)
-  let g:langType = input("输入语言类型(默认java):\n", "")
-  let g:langType = g:langType == "" ? "java" : g:langType
+  let g:langType = input("输入语言类型(默认shell):\n", "")
+  let g:langType = g:langType == "" ? "shell" : g:langType
+  if g:langType == "mermaid"
+    let g:direction = input("\n请输入流程图绘画方向(默认LR):\n", "")
+    let g:direction = g:direction == "" ? "LR" : g:direction
+  endif
   let g:markdownContent = a:selectVisualMode ? g:markdownContent : g:currentLine
-  let g:replaceContent = "\t".g:markdownContent
-  call append(line(".") - 1, "~~~".g:langType)
-  call setline(".", substitute(g:currentLine, g:markdownContent, g:replaceContent, ""))
-  call append(line("."), "~~~")
+  let g:replaceContent = g:langType == "mermaid" ? "\t"."graph "..g:direction : "\t".g:markdownContent
+  call append(line(".") - (g:langType == "mermaid" ? 2 : 1), "~~~".g:langType)
+  call setline(line(".") - (g:langType == "mermaid" ? 1 : 0), substitute(g:currentLine, g:markdownContent, g:replaceContent, ""))
+  if g:langType == "mermaid"
+    call setline(".", "\tA[条件] --> B(条件)")
+  endif
+  call append(".", "~~~")
   "let reverse = (line('.') > line('v')) ? 0 : ( line('.') < line('v') ) ? 1 : ( col('.') < col('v') ) ? 1 : 0
   return 1
 endfunction
