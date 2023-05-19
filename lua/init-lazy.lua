@@ -238,10 +238,10 @@ return {
 	},
 
 	-- auto-tag
-  {
-    "windwp/nvim-ts-autotag",
-    event = "BufRead",
-  },
+  -- {
+  --   "windwp/nvim-ts-autotag",
+  --   event = "BufRead",
+  -- },
 
 	-- auto-pairs
   {
