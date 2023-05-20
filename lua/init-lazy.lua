@@ -432,25 +432,6 @@ return {
       opts = require ("module.trans"),
       event = "BufRead",
   },
-  -- {
-  --   "voldikss/vim-translator",
-  --   config = function()
-  --     require("module.translator")
-  --   end,
-  --   keys = {
-  --     {"tt", "<Plug>Translate", silent = true},
-  --     {"<leader>tv", "<Plug>TranslateV", mode = "v", silent = true},
-  --     {"tw", "<Plug>TranslateW", silent = true},
-  --     {"<leader>tw", "<Plug>TranslateWV", mode = "v", silent = true},
-  --     {"tr", "<Plug>TranslateR --engines=google,youdao --target_lang=zh --source_lang=en", silent = true},
-  --     {"<leader>tr", "<Plug>TranslateRV --engines=google,youdao --target_lang=en --source_lang=zh", mode = "v", silent = true},
-  --     {"tx", "<Plug>TranslateX", silent = true},
-  --     {"te", "<Plug>Translate <cmd>call TranslatorSpeak(v:false)<cr>", silent = true},
-  --     {"<leader>te", "<Plug>TranslateV <cmd>call TranslatorSpeak(v:true)<cr>", mode = "v", silent = true},
-  --     {"ts", "<cmd>call TranslatorSpeak(v:false)<cr>", silent = true},
-  --     {"<leader>ts", "<cmd>call TranslatorSpeak(v:true)<cr>", mode = "v", silent = true},
-  --   },
-  -- },
 
 	-- indent-blankline
   {
@@ -459,21 +440,21 @@ return {
     event = "BufRead",
   },
 
-  {
-    "lvimuser/lsp-inlayhints.nvim",
-    config = function()
-      require("lsp.inlayhints")
-    end,
-    event = "LspAttach",
-  },
+  -- {
+  --   "lvimuser/lsp-inlayhints.nvim",
+  --   config = function()
+  --     require("lsp.inlayhints")
+  --   end,
+  --   event = "LspAttach",
+  -- },
   {
     "kkharji/sqlite.lua",
     lazy = true,
   },
-  {
-    "folke/which-key.nvim",
-    config = function()
-      require("module.whichkey")
-    end,
-  },
+  -- {
+  --   "folke/which-key.nvim",
+  --   config = function()
+  --     require("module.whichkey")
+  --   end,
+  -- },
 }
