@@ -398,7 +398,7 @@ return {
   {
     "norcalli/nvim-colorizer.lua",
     config = other.colorizer,
-    event = "BufRead",
+    ft = {"html", "css", "javascript"},
   },
 
 	-- trouble
@@ -430,7 +430,6 @@ return {
       },
       dependencies = { 'kkharji/sqlite.lua', },
       opts = require ("module.trans"),
-      event = "BufRead",
   },
 
 	-- indent-blankline
