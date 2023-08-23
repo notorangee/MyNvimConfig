@@ -35,7 +35,7 @@ keymap( 'n', "<C-Up>", ':resize +2<CR>', opts)
 keymap( 'n', "<C-Down>", ':resize -2<CR>', opts)
 -- 修改内置终端按键映射
 vim.cmd([[
-  tnoremap <S-q> <C-\><C-N>
+  tnoremap <C-q> <C-\><C-N>
   "tnoremap <leader>h <C-\><C-N><C-W>h
   "tnoremap <leader>j <C-\><C-N><C-W>j
   "tnoremap <leader>k <C-\><C-N><C-W>k
@@ -49,6 +49,9 @@ keymap('n', 'H', '5h', opts)
 keymap('n', 'J', '5j', opts)
 keymap('n', 'K', '5k', opts)
 keymap('n', 'L', '5l', opts)
+keymap('n', 'gh', 'H', opts)
+keymap('n', 'gj', 'J', opts)
+keymap('n', 'gl', 'L', opts)
 keymap('n', '<leader>q', ':q<CR><Esc>', opts)
 keymap('n', '<leader>wq', ':wq<CR>', opts)
 keymap('n', '<Esc>', '<Esc>:nohlsearch<CR>:echo<CR>', opts)
