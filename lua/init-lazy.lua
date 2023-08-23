@@ -337,8 +337,8 @@ return {
       require("module.formatter")
     end,
     keys = {
-      { "gs", "<cmd>Format<cr>", silent = true },
-      { "gl", "<cmd>lua format_range_operator()<cr>", mode = { "n", "v" }, silent = true },
+      { "<leader>fs", "<cmd>Format<cr>", silent = true },
+      { "<leader>fl", "<cmd>lua format_range_operator()<cr>", mode = { "n", "v" }, silent = true },
     }
   },
 
