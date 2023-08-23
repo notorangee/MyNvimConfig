@@ -107,14 +107,26 @@ func! Run()
     silent exec '!javac %'
     :term java %<
   elseif &filetype == 'c'
-    "let s:getDevice = system('echo ${$(ls /dev/ | grep "ttyUSB")%0*}')
-    if !filereadable('project.hex')
-      :term bear -- make && make hex install
+    let s:getDevice = system('ls /dev/ | grep "ttyACM"')
+    let s:Device = ""
+    for i in split(s:getDevice)
+      let s:Device = i
+      break
+    endfor
+    if s:Device ==# "ttyACM0"
+      if !filereadable('Temp/project.hex')
+       :term bear -- make && make hex install
+      else
+       :term make && make hex install
+      endif
     else
-      :term make && make hex install
+      if filereadable('makefile')
+        :term make
+      else
+        silent exec "!g++ % -o %<\.out"
+        :term ./%<\.out
+      endif
     endif
-      "silent exec "!g++ % -o %<\.out"
-      ":term ./%<\.out
   elseif &filetype == 'sh'
     silent exec '!chmod +x %'
     :term ./%
@@ -138,7 +150,11 @@ func! RunStop()
     silent exec '!rm $(find com -name "*.class")'
   elseif &filetype == 'c'
     "silent exec '!rm *.out'
-    silent exec '!make clean'
+      if filereadable('makefile')
+        silent exec '!make clean'
+      else
+        silent exec '!rm -rf $(find . -name "*.out")'
+      endif
   elseif &filetype == 'markdown'
     silent exec 'MarkdownPreviewStop'
   elseif &filetype == 'hrml' || &filetype == 'xml'
