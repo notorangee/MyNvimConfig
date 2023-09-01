@@ -7,9 +7,6 @@ local lsp = require("lspconfig")
 local cmp_lsp = require("cmp_nvim_lsp")
 -- local capabilities = cmp_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
 local capabilities = cmp_lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
-local attach = function(client, bufnr)
-	require("lsp-inlayhints").on_attach(client, bufnr)
-end
   -- capabilities.textDocument.completion.completionItem.snippetSupport = true
 local has_words_before = function()
 	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -31,47 +28,18 @@ local servers = {
 -- other language server
 for _, server in ipairs(servers) do
 	lsp[server].setup({
-		on_attach = attach,
 		capabilities = capabilities,
 	})
 end
 
-local function switch_source_header_splitcmd(bufnr, splitcmd)
-  bufnr = require'lspconfig'.util.validate_bufnr(bufnr)
-  local clangd_client = require'lspconfig'.util.get_active_client_by_name(bufnr, 'clangd')
-  local params = {uri = vim.uri_from_bufnr(bufnr)}
-  if clangd_client then
-    clangd_client.request("textDocument/switchSourceHeader", params, function(err, result)
-      if err then
-        error(tostring(err))
-      end
-      if not result then
-        print("Corresponding file can’t be determined")
-        return
-      end
-      vim.api.nvim_command(splitcmd .. " " .. vim.uri_to_fname(result))
-    end, bufnr)
-  else
-    print 'textDocument/switchSourceHeader is not supported by the clangd server active on the current buffer'
-  end
-end
-
 -- clangd
 lsp.clangd.setup({
-  on_attach = attach,
 	capabilities = capabilities,
   cmd = {
     "clangd",
-    "--enable-config",
-    "--pch-storage=memory",
-    "--background-index",
-    "--header-insertion=never",
   },
   filetypes = {"c", "cpp", "objc", "objcpp", "cuda", "proto"};
   single_file_support = true,
-  args = {
-    "-ferror-limit=0"
-  },
   settings = {
     CompileFlags = {
       Add = {
@@ -89,7 +57,6 @@ lsp.clangd.setup({
 
 -- html
 lsp.html.setup({
-  on_attach = attach,
 	capabilities = capabilities,
 	cmd = {
 		"vscode-html-language-server",
@@ -111,7 +78,6 @@ lsp.html.setup({
 
 -- cssls
 lsp.cssls.setup({
-  on_attach = attach,
 	capabilities = capabilities,
 	cmd = {
 		"vscode-css-language-server",
@@ -138,7 +104,6 @@ lsp.cssls.setup({
 
 -- tsserver/javascript
 lsp.tsserver.setup({
-  on_attach = attach,
 	capabilities = capabilities,
 	cmd = {
 		"typescript-language-server",
@@ -160,7 +125,6 @@ lsp.tsserver.setup({
 
 -- lua
 lsp.lua_ls.setup({
-  on_attach = attach,
 	capabilities = capabilities,
 	settings = {
 		Lua = {
@@ -186,7 +150,6 @@ lsp.lua_ls.setup({
 
 -- bashls
 lsp.bashls.setup({
-  on_attach = attach,
 	capabilities = capabilities,
 	cmd = {
 		"bash-language-server",
@@ -203,7 +166,6 @@ lsp.bashls.setup({
 
 -- vimls
 lsp.vimls.setup({
-  on_attach = attach,
 	cmd = {
 		"vim-language-server",
 		"--stdio",

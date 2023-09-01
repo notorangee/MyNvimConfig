@@ -114,14 +114,18 @@ func! Run()
       break
     endfor
     if s:Device ==# "ttyACM0"
-      if !filereadable('Temp/project.hex')
+      if !filereadable('compile_commands.json')
        :term bear -- make && make hex install
       else
        :term make && make hex install
       endif
     else
       if filereadable('makefile')
-        :term make
+        if !filereadable('compile_commands.json')
+          :term bear -- make
+        else
+          :term make
+        endif
       else
         silent exec "!g++ % -o %<\.out"
         :term ./%<\.out
