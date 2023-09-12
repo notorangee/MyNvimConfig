@@ -432,9 +432,9 @@ return {
       opts = require ("module.trans"),
   },
 
-	-- indent-blankline
+  -- mini.indentscope
   {
-    "lukas-reineke/indent-blankline.nvim",
+    'echasnovski/mini.indentscope', version = '*',
     config = other.blankline,
     event = "BufRead",
   },
