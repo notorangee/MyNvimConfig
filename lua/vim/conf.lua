@@ -172,7 +172,7 @@ function OpenMinicom()
 endfunction
 
 function OpenCutecom()
-  :term sudo cutecom
+  :term cutecom
 endfunction
 
 "输入法配置
