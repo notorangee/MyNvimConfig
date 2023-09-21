@@ -120,7 +120,7 @@ func! Run()
        :term make && make hex install
       endif
     else
-      if filereadable('makefile')
+      if filereadable('./makefile')
         if !filereadable('compile_commands.json')
           :term bear -- make
         else
