@@ -1,0 +1,14 @@
+[
+    {
+        "name": "baidu",
+        "app_id": "20230423001652493",
+        "app_passwd": "CpDPph4c4F4RpQku9jtZ",
+        "disable": false
+    },
+    {
+        "name": "youdao",
+        "app_id": "12832a54ac0e832a",
+        "app_passwd": "eKygXP24dRlHcAsUlQQ768o7wTMknOqr",
+        "disable": false
+    }
+]
