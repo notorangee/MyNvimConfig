@@ -13,25 +13,11 @@ vim.diagnostic.config({
   severity_sort = false,
 })
 -- 开启lsp诊断图标
-vim.fn.sign_define(
-  'DiagnosticSignError',
-  { texthl = 'DiagnosticSignError', text = '', numhl = 'DiagnosticSignError' }
-)
-
-vim.fn.sign_define(
-  'DiagnosticSignWarn',
-  { texthl = 'DiagnosticSignWarn', text = '', numhl = 'DiagnosticSignWarn' }
-)
-
-vim.fn.sign_define(
-  'DiagnosticSignHint',
-  { texthl = 'DiagnosticSignHint', text = '', numhl = 'DiagnosticSignHint' }
-)
-
-vim.fn.sign_define(
-  'DiagnosticSignInfo',
-  { texthl = 'DiagnosticSignInfo', text = '', numhl = 'DiagnosticSignInfo' }
-)
+local signs = { Error = "", Warn = "", Hint = "", Info = "" }
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { texthl = hl, text = icon, numhl = hl })
+end
 
 -- 显示当前行，以及其他相对行
 vim.o.relativenumber = true;
