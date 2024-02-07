@@ -81,12 +81,6 @@ vim.o.termguicolors = true
 -- 禁用鼠标
 vim.o.mouse = "a"
 
-vim.diagnostic.config({
-  virtual_text = false,
-  signs = true,
-  update_in_insert = false
-})
-
 -- vimscript配置
 vim.cmd([[
 
