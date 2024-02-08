@@ -148,9 +148,14 @@ return {
 	{
 		"nvim-telescope/telescope.nvim",
 		branch = "0.1.x",
-		dependencies = { { "nvim-lua/plenary.nvim" }, { 'nvim-telescope/telescope-fzf-native.nvim' } },
+		dependencies = {
+      { "nvim-lua/plenary.nvim" },
+      { 'nvim-telescope/telescope-fzf-native.nvim' },
+      {'jonarrien/telescope-cmdline.nvim'}
+    },
     config = function()
       require("module.telescope")
+      require("telescope").load_extension('cmdline')
     end,
     keys = {
       {"ff", "<cmd>Telescope find_files<cr>", silent = true},
@@ -161,7 +166,8 @@ return {
       {"fk", "<cmd>Telescope keymaps<cr>", silent = true},
       {"fc", "<cmd>Telescope git_commits initial_mode=normal<cr>", silent = true},
       {"fw", "<cmd>Telescope grep_string initial_mode=normal<cr>", silent = true},
-      {"<leader>fw", '"zy:Telescope live_grep default_text=<C-r>z initial_mode=normal<cr>', mode="v", silent = true},
+      {"<leader>fw", '"zy:Telescope live_grep default_text=<C-r>z initial_mode=normal<cr>', mode = "v", silent = true},
+      { ':', '<cmd>Telescope cmdline<cr>', desc = 'Cmdline', mode = "n" },
     },
     event = "UIEnter",
 	},

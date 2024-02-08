@@ -107,8 +107,22 @@ telescope.setup {
       override_file_sorter = true,     -- override the file sorter
       case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
                                        -- the default case_mode is "smart_case"
-    }
+    },
+    cmdline = {
+      picker = {
+        layout_config = {
+          width  = 120,
+          height = 25,
+        }
+      },
+      mappings    = {
+        complete      = '<C-p>',
+        run_selection = '<C-o>',
+        run_input     = '<CR>',
+      },
+    },
   },
 }
 
 telescope.load_extension('fzf')
+
