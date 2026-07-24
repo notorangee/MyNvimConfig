@@ -1,6 +1,6 @@
 -- 设置字符集
 vim.o.fileencodings="utf-8,ucs-bom,gb18030,gbk,gb2312,cp936"
-vim.o.termencoding="utf-8"
+-- vim.o.termencoding="utf-8"
 vim.o.encoding="utf-8"
 -- 显示行号
 vim.o.number = true
@@ -16,7 +16,8 @@ vim.diagnostic.config({
 local signs = { Error = "", Warn = "", Hint = "", Info = "" }
 for type, icon in pairs(signs) do
   local hl = "DiagnosticSign" .. type
-  vim.fn.sign_define(hl, { texthl = hl, text = icon, numhl = hl })
+  -- vim.fn.sign_define()
+  -- vim.diagnostic.config(hl, { texthl = hl, text = icon, numhl = hl })
 end
 
 -- 显示当前行，以及其他相对行
@@ -66,6 +67,9 @@ vim.o.smartindent = true
 vim.o.termguicolors = true
 -- 禁用鼠标
 vim.o.mouse = "a"
+vim.o.conceallevel = 1
+
+vim.treesitter.language.register('markdown', 'vimwiki')
 
 -- vimscript配置
 vim.cmd([[
@@ -102,7 +106,8 @@ func! Run()
     else
       if filereadable('./makefile')
         if !filereadable('compile_commands.json')
-          :term bear -- make
+          " :term bear -- make
+          :term make
         else
           :term make
         endif

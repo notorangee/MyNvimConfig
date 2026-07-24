@@ -1,6 +1,6 @@
 -- environment
 local home = os.getenv('HOME')
-local root_dir = require('jdtls.setup').find_root({'.git', 'pom.xml', 'gradlew'})
+local root_dir = require('jdtls.setup').find_root({'.git', 'mvnw', 'gradlew'})
 local project_name = vim.fn.fnamemodify(root_dir, ':p:h:t')
 local workspace_dir = home .. '/jdtls-workspace/' .. project_name
 
@@ -15,7 +15,6 @@ local config = {
     '-Xms1g',
     '--add-modules=ALL-SYSTEM',
     '--add-opens', 'java.base/java.util=ALL-UNNAMED',
-    '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
     '-jar', '/home/orange/Soft/jdtls/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar',
     '-configuration', '/home/orange/Soft/jdtls/config_linux',
     '-data', workspace_dir
@@ -54,12 +53,12 @@ local config = {
         },
         runtimes = {
           {
-            name = "JavaSE-1.8",
-            path = "/usr/lib/jvm/java-8-openjdk",
-          },
-          {
             name = "JavaSE-11",
             path = "/usr/lib/jvm/java-11-openjdk",
+          },
+          {
+            name = "JavaSE-1.8",
+            path = "/usr/lib/jvm/java-8-openjdk",
           },
         }
       },

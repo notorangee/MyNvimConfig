@@ -7,12 +7,12 @@ return {
     "nvim-tree/nvim-web-devicons",
     lazy = true,
   },
-  
+
   {
     "nvim-lua/plenary.nvim",
     lazy = true,
   },
-  
+
 	-- gruvbox
 	{
     "sainnhe/gruvbox-material",
@@ -38,29 +38,24 @@ return {
     config = function()
       require("module.treesitter")
     end,
-    event = "VimEnter",
+    lazy = false,
 	},
-
-  {
-    "p00f/nvim-ts-rainbow",
-    event = "BufRead",
-  },
 
 	-- treesitter-context
 	{
     "nvim-treesitter/nvim-treesitter-context",
-    lazy = true,
+    lazy = false,
   },
 
 	{
-		"phaazon/hop.nvim",
-		branch = "v2", -- optional but strongly recommended
+		"smoka7/hop.nvim",
+		version = "*",
     config = other.hop,
     keys = {
-      {"fs", "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", mode = {"n", "v"}, silent = true}, 
-      {"Fs", "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", mode = {"n", "v"}, silent = true}, 
-      {"fS", "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false})<cr>", mode = {"n", "v"}, silent = true}, 
-      {"FS", "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false})<cr>", mode = {"n", "v"}, silent = true}, 
+      {"fs", "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", mode = {"n", "v"}, silent = true},
+      {"Fs", "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", mode = {"n", "v"}, silent = true},
+      {"fS", "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false})<cr>", mode = {"n", "v"}, silent = true},
+      {"FS", "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false})<cr>", mode = {"n", "v"}, silent = true},
     },
 	},
 
@@ -81,14 +76,18 @@ return {
   },
 
 	{
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     config = function()
       require("lsp.mason")
     end,
-    event = "BufRead",
+    event = "VimEnter",
   },
 	{
-    "williamboman/mason-lspconfig.nvim",
+    "mason-org/mason-lspconfig.nvim",
+    dependencies = {
+      "mason-org/mason.nvim",
+      "neovim/nvim-lspconfig",
+    },
     lazy = true,
   },
 
@@ -147,7 +146,7 @@ return {
   -- telescope
 	{
 		"nvim-telescope/telescope.nvim",
-		branch = "0.1.x",
+    version = '*',
 		dependencies = {
       { "nvim-lua/plenary.nvim" },
       { 'nvim-telescope/telescope-fzf-native.nvim' },
@@ -155,7 +154,6 @@ return {
     },
     config = function()
       require("module.telescope")
-      require("telescope").load_extension('cmdline')
     end,
     keys = {
       {"ff", "<cmd>Telescope find_files<cr>", silent = true},
@@ -187,10 +185,6 @@ return {
 	-- java
 	{
     "mfussenegger/nvim-jdtls",
-    config = function()
-      require("lsp.java")
-    end,
-    ft = "java",
   },
 
 	-- lspsaga
@@ -204,7 +198,7 @@ return {
       { "ga", "<cmd>Lspsaga code_action<cr>", mode = {"n", "v"}, silent = true },
       -- { "<leader>ga", ":<c-u>Lspsaga range_code_action<cr>", silent = true },
       {"rn", "<cmd>Lspsaga rename<cr>", silent = true},
-      {"gr", "<cmd>Lspsaga lsp_finder<cr>", silent = true},
+      {"gr", "<cmd>Lspsaga finder<cr>", silent = true},
       {"<C-h>", "<cmd>lua vim.lsp.buf.signature_help()<cr>", mode = {"n", "i"}, silent = true},
       {"gk", "<cmd>Lspsaga hover_doc<cr>", silent = true},
       {"go", "<cmd>Lspsaga outline<cr>", silent = true},
@@ -234,13 +228,6 @@ return {
     end,
     event = "BufRead",
   },
-
-	-- nvim-gps
-	{
-		"AvavaAvaOrange/nvim-gps",
-		dependencies = { { "nvim-treesitter/nvim-treesitter" } },
-    event = "BufRead",
-	},
 
 	-- auto-tag
   {
@@ -295,6 +282,45 @@ return {
   {
     "airblade/vim-rooter",
     config = other.rooter,
+    event = "BufRead",
+  },
+
+  {
+    'MeanderingProgrammer/render-markdown.nvim',
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+    opts = {
+      enabled = false,
+      render_modes = true,
+      bullet = {
+        highlight = "@markup.list",
+        icons = { "•", "•", "•", "•" }
+      },
+      checkbox = {
+        bullet = true,
+        checked = {
+          icon = "[󰄬]"
+        },
+        custom = {
+          cancelled = {
+            highlight = "RenderMarkdownCancelled",
+            raw = "[_]",
+            rendered = "[]"
+          },
+          doing = {
+            highlight = "RenderMarkdownDoing",
+            raw = "[-]",
+            rendered = "[󰥔]"
+          }
+        },
+        unchecked = {
+          icon = "[ ]"
+        }
+      },
+      file_types = { 'markdown' },
+      completions = {
+        lsp = { enabled = true }
+      },
+    },
     event = "BufRead",
   },
 

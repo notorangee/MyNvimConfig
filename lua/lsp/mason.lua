@@ -1,10 +1,3 @@
-require("mason-lspconfig").setup({
-    -- ensure_installed = {"lua_ls", "clangd", "bashls", "cmake", "cssls", "html", "jsonls",
-    --   "tsserver", "marksman", "pyright", "sqlls", "vimls", "lemminx", "yamlls", "gopls" },
-    ensure_installed = {},
-    automatic_installation = true,
-})
-
 require("mason").setup({
     ui = {
         -- Whether to automatically check for new versions when opening the :Mason window.
@@ -73,3 +66,207 @@ require("mason").setup({
     },
 })
 
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
+-- local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+require("mason-lspconfig").setup({
+    ensure_installed = {},
+    -- ensure_installed = {"lua_ls", "clangd", "bashls", "cmake", "cssls", "html", "jsonls",
+    --   "ts_ls", "marksman", "pyright", "sqlls", "vimls", "lemminx", "yamlls", "gopls" },
+    automatic_installation = true,
+    handlers = {
+      function(server_name)
+        -- This is the key change: using vim.lsp.config
+        local server_config = {
+          name = server_name,
+          on_attach = on_attach,
+          capabilities = capabilities,
+        }
+
+        if server_name == "clangd" then
+          server_config = {
+            name = server_name,
+            on_attach = on_attach,
+            capabilities = capabilities,
+            cmd = {
+              "clangd",
+              "--pch-storage=memory",
+              "--background-index",
+              "--header-insertion=never",
+            },
+            filetypes = {"c", "cpp", "objc", "objcpp", "cuda", "proto"};
+            single_file_support = true,
+            settings = {
+              CompileFlags = {
+                Add = {
+                  "-ferror-limit=0",
+                },
+              },
+              InlayHints = {
+                Designators = true,
+                Enabled = true,
+                ParameterNames = true,
+                DeducedTypes = true,
+              },
+            },
+          }
+        end
+        if server_name == "html" then
+          server_config = {
+            name = server_name,
+            on_attach = on_attach,
+            capabilities = capabilities,
+            cmd = {
+            	"vscode-html-language-server",
+            	"--stdio",
+            },
+            filetype = {
+            	"html",
+            },
+            init_options = {
+            	configurationSection = { "html", "css", "javascript" },
+            	embeddedLanguages = {
+            		css = true,
+            		javascript = true,
+            	},
+            	provideFormatter = true,
+            },
+            single_file_support = true,
+          }
+        end
+        if server_name == "cssls" then
+          server_config = {
+            name = server_name,
+            on_attach = on_attach,
+            capabilities = capabilities,
+            cmd = {
+            	"vscode-css-language-server",
+            	"--stdio",
+            },
+            filetype = {
+            	"css",
+            	"scss",
+            	"less",
+            },
+            settings = {
+            	css = {
+            		validate = true,
+            	},
+            	less = {
+            		validate = true,
+            	},
+            	scss = {
+            		validate = true,
+            	},
+            },
+            single_file_support = true,
+          }
+        end
+        if server_name == "ts_ls" then
+          server_config = {
+            name = server_name,
+            on_attach = on_attach,
+            capabilities = capabilities,
+            cmd = {
+            	"typescript-language-server",
+            	"--stdio",
+            },
+            filetype = {
+            	"javascript",
+            	"javascriptreact",
+            	"javascript.jsx",
+            	"typescript",
+            	"typescriptreact",
+            	"typescript.tsx",
+            },
+            init_options = {
+            	hostInfo = "neovim",
+            },
+            single_file_support = true,
+          }
+        end
+        if server_name == "lua_ls" then
+          server_config = {
+            name = server_name,
+            on_attach = on_attach,
+            capabilities = capabilities,
+            settings = {
+            	Lua = {
+            		runtime = {
+            			-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+            			version = "LuaJIT",
+            		},
+            		diagnostics = {
+            			-- Get the language server to recognize the `vim` global
+            			globals = { "vim" },
+            		},
+            		workspace = {
+            			-- Make the server aware of Neovim runtime files
+            			library = vim.api.nvim_get_runtime_file("", true),
+            		},
+            		-- Do not send telemetry data containing a randomized but unique identifier
+            		telemetry = {
+            			enable = false,
+            		},
+            	},
+            },
+          }
+        end
+        if server_name == "bashls" then
+          server_config = {
+            name = server_name,
+            on_attach = on_attach,
+            capabilities = capabilities,
+            cmd = {
+            	"bash-language-server",
+            	"start",
+            },
+            cmd_env = {
+            	GLOB_PATTERN = "*@(.sh|.inc|.bash|.command)",
+            },
+            filetype = {
+            	"sh",
+            },
+            single_file_support = true,
+          }
+        end
+        if server_name == "vimls" then
+          server_config = {
+            name = server_name,
+            on_attach = on_attach,
+            capabilities = capabilities,
+            cmd = {
+            	"vim-language-server",
+            	"--stdio",
+            },
+            filetype = {
+            	"vim",
+            },
+            init_options = {
+            	diagnostic = {
+            		enable = true,
+            	},
+            	indexes = {
+            		count = 3,
+            		gap = 100,
+            		projectRootPatterns = { "runtime", "nvim", ".git", "autoload", "plugin" },
+            		runtimepath = true,
+            	},
+            	isNeovim = true,
+            	iskeyword = "@,48-57,_,192-255,-#",
+            	runtimepath = "",
+            	suggest = {
+            		fromRuntimepath = true,
+            		fromVimruntime = true,
+            	},
+            	vimruntime = "",
+            },
+            single_file_support = true,
+          }
+        end
+        -- Enable the server for the current buffer
+        vim.lsp.config(server_config)
+        vim.lsp.enable(server_name)
+      end,
+    }
+})

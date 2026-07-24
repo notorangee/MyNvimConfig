@@ -3,7 +3,7 @@
         "name": "baidu",
         "app_id": "20230423001652493",
         "app_passwd": "CpDPph4c4F4RpQku9jtZ",
-        "disable": false
+        "disable": true
     },
     {
         "name": "youdao",
