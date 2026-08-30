@@ -29,10 +29,10 @@ keymap('n', '<leader>h', '<C-w>h', opts)
 keymap('n', '<leader>j', '<C-w>j', opts)
 keymap('n', '<leader>k', '<C-w>k', opts)
 keymap('n', '<leader>l', '<C-w>l', opts)
-keymap( 'n', "<C-Right>", ':vertical resize -2<CR>', opts)
-keymap( 'n', "<C-Left>", ':vertical resize +2<CR>', opts)
-keymap( 'n', "<C-Up>", ':resize +2<CR>', opts)
-keymap( 'n', "<C-Down>", ':resize -2<CR>', opts)
+keymap('n', "<C-Right>", ':vertical resize -2<CR>', opts)
+keymap('n', "<C-Left>", ':vertical resize +2<CR>', opts)
+keymap('n', "<C-Up>", ':resize +2<CR>', opts)
+keymap('n', "<C-Down>", ':resize -2<CR>', opts)
 -- 修改内置终端按键映射
 vim.cmd([[
   tnoremap <C-q> <C-\><C-N>
@@ -64,3 +64,6 @@ keymap('n', '<leader>mc', ':call OpenMinicom()<CR>', opts)
 keymap('n', '<leader>cu', ':call OpenCutecom()<CR>', opts)
 keymap('n', '<leader>sw', ':ClangdSwitchSourceHeader<CR>', opts)
 keymap('n', '<F7>', ":term make debug<CR>", opts)
+
+keymap('n', '<leader>t', ':lua DirectGoogleTranslate("n")<CR>', { noremap = true, silent = true })
+keymap('v', '<leader>t', ':<C-u>lua DirectGoogleTranslate("v")<CR>', { noremap = true, silent = true })
